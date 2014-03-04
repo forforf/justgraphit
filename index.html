@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    -->
+
+  <title>Just Graph It</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" href="styles/just-graph-it.css">
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/d3/d3.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <!-- angular app files -->
+  <script src="app/just-graph-it.js"></script>
+
+
+</head>
+
+<body ng-app="myApp">
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Just Graph It</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Input</a></li>
+        <li><a href="#about">Graph</a></li>
+        <li><a href="#contact">Edit</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="text-center" ng-controller="MainCtrl">
+    <h1>Number</h1>
+    <input type=number ng-model="input.number" />
+    <button ng-click="save()" >Save</button>
+    <div class="alert alert-warning" ng-hide="note.nan">Not Saved, wasn't a number - Try Again</div>
+
+    <line-graph data="input"></line-graph>
+  </div>
+
+
+
+</div><!-- /.container -->
+
+</body>
+</html>
