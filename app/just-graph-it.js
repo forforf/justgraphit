@@ -3,15 +3,15 @@ var myApp = angular.module('myApp',['ngRoute']);
 
 myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
-    .when('/base/input.html', {
-      templateUrl: 'app/input/input.html',
+    .when('/input.html', {
+      templateUrl: '/justgraphit/app/input/input.html',
       controller: MainCtrl
     })
     .when('/edit/:graphId', {
       templateUrl: 'app/edit.html',
       controller: MainCtrl
     })
-    .otherwise({redirectTo : '/base/input.html'});
+    .otherwise({redirectTo : '/input.html'});
 //  $routeProvider.when('/Book/:bookId/ch/:chapterId', {
 //    templateUrl: 'chapter.html',
 //    controller: ChapterCntl
