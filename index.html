@@ -25,13 +25,14 @@
 
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/d3/d3.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="bower_components/moment/moment.js"></script>
   <!-- angular app files -->
   <script src="app/just-graph-it.js"></script>
 
-
+  <base href="/app" />
 </head>
 
 <body ng-app="myApp">
@@ -47,7 +48,7 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Input</a></li>
+        <li class="active"><a href="#/input">Input</a></li>
         <li><a href="#about">Graph</a></li>
         <li><a href="#contact">Edit</a></li>
       </ul>
@@ -55,20 +56,7 @@
   </div>
 </div>
 
-<div class="container">
-
-  <div class="text-center" ng-controller="MainCtrl">
-    <h1>Number</h1>
-    <input type=number ng-model="input.number" />
-    <button ng-click="save()" >Save</button>
-    <div class="alert alert-warning" ng-hide="note.nan">Not Saved, wasn't a number - Try Again</div>
-
-    <line-graph data="input"></line-graph>
-  </div>
-
-
-
-</div><!-- /.container -->
+<ng-view></ng-view>
 
 </body>
 </html>

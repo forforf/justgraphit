@@ -16,7 +16,8 @@
     "moment": "latest",
     "bootstrap": "~3.1.1",
     "jquery": "~2.1.0",
-    "d3": "~3.4.3"
+    "d3": "~3.4.3",
+    "angular-route": "~1.2.14"
   },
   "devDependencies": {
     "angular-mocks": "latest"

@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="text-center">
+    <div>
+      <h1>Graph It</h1>
+      <div class="row">
+        <label for="graph-name">Name It</label>
+        <input id="graph-name" type="text" ng-model="graphs[input.graphId].name">
+      </div>
+      <div class="row">
+        <label for="input-number">Number It</label>
+        <input
+          id="input-number"
+          type=number
+          placeholder="123.4"
+          ng-keyup="$event.keyCode == 13 ? save() : null"
+          ng-model="input.number" />
+        <!-- <button ng-click="save()" >Save</button> -->
+
+        <div class="alert alert-warning" ng-hide="note.nan">Not Saved, wasn't a number - Try Again</div>
+      </div>
+
+      <line-graph data="input"></line-graph>
+      <div class="row">
+        <button  ng-click="clear()">Clear</button>
+      </div>
+    </div>
+  </div>
+
+
+
+</div><!-- /.container -->

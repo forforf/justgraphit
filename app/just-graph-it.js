@@ -1,24 +1,40 @@
-var myApp = angular.module('myApp',[]);
+var myApp = angular.module('myApp',['ngRoute']);
 
 
-myApp.config(['$locationProvider',function ($locationProvider) {
+myApp.config(function($routeProvider, $locationProvider) {
+  $routeProvider
+    .when('/base/input.html', {
+      templateUrl: 'app/input/input.html',
+      controller: MainCtrl
+    })
+    .when('/edit/:graphId', {
+      templateUrl: 'app/edit.html',
+      controller: MainCtrl
+    })
+    .otherwise({redirectTo : '/base/input.html'});
+//  $routeProvider.when('/Book/:bookId/ch/:chapterId', {
+//    templateUrl: 'chapter.html',
+//    controller: ChapterCntl
+//  });
+
   $locationProvider.html5Mode(true);
-}]);
+});
 
 //myApp.directive('myDirective', function() {});
 //myApp.factory('myService', function() {});
 
 myApp.factory('store', function(){
-  var save = function(key, value){
-    localStorage.setItem(key, JSON.stringify(value));
-  };
 
   var append = function(key, value){
     var updateValue = get(key) || [];
     if( !Array.isArray(updateValue) ){ updateValue = []; }
     updateValue.push(value);
-    console.log('appended:', updateValue);
     save(key, updateValue);
+  };
+
+  var clear = function(key){
+    //ToDo: consider regex to only clear our stuff
+    localStorage.removeItem(key);
   };
 
   var get = function(key){
@@ -26,9 +42,21 @@ myApp.factory('store', function(){
     return JSON.parse(str);
   };
 
+  var makeGraphKey = function(prefix, graphId){
+    if(!prefix){ return null; }
+    if(!(graphId>=0)){ return null; }
+    return ''+prefix+'-graphId-'+graphId;
+  };
+
+  var save = function(key, value){
+    localStorage.setItem(key, JSON.stringify(value));
+  };
+
   return {
     append: append,
-    get: get
+    clear: clear,
+    get: get,
+    makeGraphKey: makeGraphKey
   };
 });
 
@@ -40,23 +68,16 @@ myApp.directive('lineGraph', function ($location, store) {
       data: '='
     },
     link: function (scope, elem, attrs) {
-//      var data = [
-//        {number:3, datetime:"2014-03-04T19:58:21.519Z"},
-//        {number:4, datetime:"2014-03-04T19:58:22.519Z"},
-//        {number:1, datetime:"2014-03-04T19:58:23.519Z"},
-//        {number:5, datetime:"2014-03-04T19:58:24.519Z"}
-//      ];
-
-      //convert strings to datetimes
-
-
-
 
       function graph(data){
+        if(!data || !data.length){
+          d3.select("svg").remove();
+          return null
+        }
+
 
         data = data || [];
         data.forEach(function(i){i.dt = new Date(i.datetime) });
-
 
         var num = function(d){ return d.number};
         var minNum = d3.min(data, num);
@@ -65,7 +86,7 @@ myApp.directive('lineGraph', function ($location, store) {
         var startDt = data[0].dt;
         var endDt = data[data.length-1].dt;
 
-        var w = 600
+        var w = 400;
         var h = 200;
         var margin = 20;
 
@@ -120,14 +141,10 @@ myApp.directive('lineGraph', function ($location, store) {
           .attr("y2", -h+margin)
 
         g.selectAll(".xLabel")
-          .data(x.ticks(4))
+          .data(x.ticks(3))
           .enter().append("svg:text")
           .attr("class", "xLabel")
-          .text(function(d) {
-            //console.log('time label')
-            //console.log('tick time', d);
-            //console.log('tick time from start', moment(d).fromNow());
-            return moment(d).fromNow();})
+          .text(function(d) { return moment(d).fromNow();})
           .attr("x", function(d) { return x(d) })
           .attr("y", 0)
           .attr("text-anchor", "middle");
@@ -146,27 +163,55 @@ myApp.directive('lineGraph', function ($location, store) {
 
       }
 
+      function getGraphData(graphId){
+        var graphKey = store.makeGraphKey($location.host(), graphId );
+        return store.get(graphKey);
+      }
+
       //graph(data);
       scope.$watchCollection('[data.number, data.datetime]', function(newVal, oldVal){
-        console.log('watched', newVal);
-        if(newVal){ graph( store.get( $location.absUrl() ) );}
+        console.log('watched', newVal, scope.data);
+        if(newVal){
+          graph( getGraphData( scope.data.graphId) );
+        }
       });
     }
   };
 });
 
-function MainCtrl($scope, $location, store) {
+function MainCtrl($scope, $location, $timeout, store) {
   $scope.input = {};
   $scope.note =  {};
   $scope.note.nan = true;
 
-  var key = $location.absUrl();
+  //we include the graphId with the input
+  //so that's its readily accessible when a new data
+  //point is entered
+  $scope.input.graphId=0;
+  $scope.graphs = [];
+  $scope.graphs[0] = {};
+  $scope.graphs[0].name = "my first graph";
+
+
 
   $scope.save = function(){
+    var key = store.makeGraphKey($location.host(), $scope.input.graphId);
     $scope.note.nan = $scope.input.number ? true : false;
     if (!$scope.note.nan){ return $scope.note.nan; }
     $scope.input.datetime = moment();
     store.append(key, $scope.input);
   };
 
+  $scope.clear = function(){
+    var key = store.makeGraphKey($location.host(), $scope.input.graphId);
+    store.clear(key);
+    $timeout(function(){
+      $scope.input.number = null;
+      $scope.input.datetime = null;
+    });
+
+
+  };
+
 }
+
