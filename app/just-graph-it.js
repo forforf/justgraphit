@@ -42,9 +42,31 @@ myApp.factory('store', function(){
     return JSON.parse(str);
   };
 
+  var getAll = function(prefix){
+    var keys = getAllKeys(prefix);
+    var all = {};
+    keys.forEach(function(k){
+      var val = localStorage.getItem(k);
+      all[k] = val;
+    });
+    return all;
+  };
+
+  var getAllKeys = function(prefix){
+    var matcher = /^prefix/;
+    var keys = []
+    for (var key in localStorage){
+      if( key.match(matcher) ){
+        keys.push(key);
+      }
+    }
+    return keys;
+  };
+
   var makeGraphKey = function(prefix, graphId){
-    if(!prefix){ return null; }
-    if(!(graphId>=0)){ return null; }
+    console.log(prefix, graphId);
+    if(!prefix){ console.log('a');return null; }
+    if(!graphId && graphId !== 0){ console.log('b'); return null; }
     return ''+prefix+'-graphId-'+graphId;
   };
 
@@ -56,7 +78,10 @@ myApp.factory('store', function(){
     append: append,
     clear: clear,
     get: get,
-    makeGraphKey: makeGraphKey
+    getAll: getAll,
+    getAllKeys: getAllKeys,
+    makeGraphKey: makeGraphKey,
+    save: save
   };
 });
 
@@ -65,12 +90,15 @@ myApp.directive('lineGraph', function ($location, store) {
     restrict: 'E',
     template: '<div />',
     scope: {
-      data: '='
+      data: '=',
+      graphInput: '='
     },
     link: function (scope, elem, attrs) {
 
+      var GRAPH_STORE = $location.host()+'-jgi';
+
       function graph(data){
-        if(!data || !data.length){
+        if(!data && data !== 0 ){
           d3.select("svg").remove();
           return null
         }
@@ -164,12 +192,12 @@ myApp.directive('lineGraph', function ($location, store) {
       }
 
       function getGraphData(graphId){
-        var graphKey = store.makeGraphKey($location.host(), graphId );
+        var graphKey = store.makeGraphKey(GRAPH_STORE, graphId );
         return store.get(graphKey);
       }
 
       //graph(data);
-      scope.$watchCollection('[data.number, data.datetime]', function(newVal, oldVal){
+      scope.$watchCollection('[data.number, data.datetime, data.graphId]', function(newVal, oldVal){
         console.log('watched', newVal, scope.data);
         if(newVal){
           graph( getGraphData( scope.data.graphId) );
@@ -179,37 +207,143 @@ myApp.directive('lineGraph', function ($location, store) {
   };
 });
 
-function MainCtrl($scope, $location, $timeout, store) {
+function MainCtrl($scope, $location, $timeout, $filter, store) {
+  var WATCH_INPUT_TEXT_DELAY = 500;
+  var GRAPH_STORE = $location.host()+'-jgi';
+  var DEFAULT_GRAPH_NAME = 'my first graph';
   $scope.input = {};
   $scope.note =  {};
-  $scope.note.nan = true;
+  $scope.note.nan = false;
+  //$scope.graphs = [];
 
-  //we include the graphId with the input
-  //so that's its readily accessible when a new data
-  //point is entered
-  $scope.input.graphId=0;
-  $scope.graphs = [];
-  $scope.graphs[0] = {};
-  $scope.graphs[0].name = "my first graph";
+  $scope.graphs = {};
 
 
+  //initialize graph meta
+  var initMeta = graphMeta();
+  $scope.graphs.list = initMeta.list || [];
+  $scope.input.name = initMeta.currentGraph || DEFAULT_GRAPH_NAME;
+  $scope.input.graphId = getSetGraphId($scope.input.name, $scope.graphs.list);
+  console.log('afterinit', $scope.graphs, $scope.input);
+
+  //
+
+
+  // private functions
+
+  function clearGraph(){
+    //call digest to clear graph
+    $timeout(function(){
+      console.log('clearing graph');
+      $scope.input.graphId = null;
+//      $scope.input.number = null;
+//      $scope.input.datetime = null;
+    });
+  }
+
+  function getGraphId(name, list){
+    var idx = list.indexOf(name);
+    if (idx>-1) {
+      return idx;
+    } else {
+      return null;
+    }
+  }
+
+  function getSetGraphId(name, list){
+
+    var idx = getGraphId(name, list);
+
+    console.log('getset idx', idx);
+
+    // return the id if we already have the graph in the list
+    if ( idx !== null ) { console.log('already set, returning', idx); return idx; }
+    console.log('creating id');
+
+    // otherwise add the name
+    list.push(name);
+    var meta = { list: list, currentGraph: name };
+
+    saveGraphMeta(meta);
+
+    return list.length-1
+  }
+
+  function graphMeta(){
+    var meta = store.get(GRAPH_STORE);
+    if(!meta){ meta = {}; }
+    if(!meta.list){ meta.list=[] }
+    return meta;
+  }
+
+  function saveGraphMeta(meta){
+    store.save(GRAPH_STORE, meta)
+  }
+
+  // watch function
+  // [$scope.]graphs.filterList defined in html ng-repeat filter directive
+  // We're watching the first two elements of the array to detect when the input.name
+  // model coalesces to a single match.
+  $scope.$watchCollection('[graphs.filterList[0], graphs.filterList[1], graphs.list[0]]', function(newVal, oldVal){
+    if ($scope.input.name === DEFAULT_GRAPH_NAME){
+      //a bit stinky as this breaks if the default graph is not the first graph
+      return false;
+    }
+    var currentId = $scope.input.graphId;
+
+
+    //initial watch
+    console.log('W -- new old', newVal, oldVal);
+//    if(typeof newVal[0] === 'undefined' && typeof oldVal[0] === 'undefined'){
+//      return currentId;
+//    }
+
+    console.log('W -- watch names', $scope.input.name, newVal[0])
+    if(!newVal){ return currentId; }
+    console.log('filterList', newVal );
+    if( !newVal[0] && !newVal[1] ){
+      console.log('W -- New Name');
+      clearGraph();
+      return false;
+    }
+    if( newVal[0] && !newVal[1] ){
+      console.log('W -- one match');
+      $scope.input.graphId = getGraphId(newVal[0], $scope.graphs.list)
+    } else {
+      console.log('W -- something else', !!newVal[0].length, !!newVal[1].length);
+      return currentId;
+    }
+    return currentId;
+  });
+
+  // scope functions
+
+  $scope.checkName = function(){
+    $scope.input.graphId = getGraphId($scope.input.name, $scope.graphs.list);
+  }
 
   $scope.save = function(){
-    var key = store.makeGraphKey($location.host(), $scope.input.graphId);
-    $scope.note.nan = $scope.input.number ? true : false;
-    if (!$scope.note.nan){ return $scope.note.nan; }
+
+    //validate input
+    $scope.note.nan = isNaN( parseFloat($scope.input.number) );
+    // ignore if we try to graph a non-number
+    if ($scope.note.nan){ return !$scope.note.nan; }
+
+    var id = getSetGraphId($scope.input.name, $scope.graphs.list);
+
     $scope.input.datetime = moment();
-    store.append(key, $scope.input);
+    var key = store.makeGraphKey(GRAPH_STORE, id);
+
+    store.append(key, {number: $scope.input.number, datetime: $scope.input.datetime});
   };
 
   $scope.clear = function(){
-    var key = store.makeGraphKey($location.host(), $scope.input.graphId);
-    store.clear(key);
-    $timeout(function(){
-      $scope.input.number = null;
-      $scope.input.datetime = null;
-    });
+    var id = getSetGraphId($scope.input.name, $scope.graphs.list);
 
+    var key = store.makeGraphKey(GRAPH_STORE, id);
+
+    store.clear(key);
+    clearGraph();
 
   };
 
