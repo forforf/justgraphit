@@ -9,47 +9,56 @@
       </div>
 
       <div class="row">
-        <div class="col-md-4">
-          <label for="graph-name">Name It</label>
-          <input
-            id="graph-name"
-            type="text"
-            ng-blur="checkName()"
-            ng-keyup="$event.keyCode == 13 ? checkName() : null"
-            ng-model="input.name">
 
+
+        <div class="col-md-4">
+          <div class="row">
+            <label for="graph-name">Name It</label>
+            <input
+              id="graph-name"
+              type="text"
+              ng-blur="checkName()"
+              ng-keyup="$event.keyCode == 13 ? checkName() : showDrop()"
+              ng-model="input.name">
+            <div class="dropdown">
+              <ul class="dropdown-menu" ng-style="dropVis">
+                <li ng-repeat="g in (graphs.filterList = (graphs.list | filter:input.name))">
+                  <a ng-click="input.name=g; checkName()">{{ g }}</a>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <label for="input-number">Number It</label>
+            <input
+              id="input-number"
+              type=number
+              placeholder="123.4"
+              ng-keyup="$event.keyCode == 13 ? save() : null"
+              ng-model="input.number" />
+            <!-- <button ng-click="save()" >Save</button> -->
+
+            <div class="alert alert-warning" ng-show="note.nan">Not Saved, wasn't a number - Try Again</div>
+          </div>
+
+          <div class="row">
+            <line-graph data="input"></line-graph>
+            <div class="row">
+              <button  ng-click="clear()">Clear</button>
+            </div>
+          </div>
         </div>
-        <div class="col-md-2-offset-1 graph-list">
+
+        <div class="col-md-2 graph-list">
           {{ graphs.list }},{{input.name }}
-          <ul class="nav nav-pills nav-stacked"> Existing Matches
+          <ul class="nav nav-pills nav"> My Graphs:
             <li ng-repeat="g in (graphs.filterList = (graphs.list | filter:input.name))">
-              <a ng-click="">{{ g }}</a>
+              <a ng-click="input.name=g">{{ g }}</a>
             </li>
           </ul>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <label for="input-number">Number It</label>
-          <input
-            id="input-number"
-            type=number
-            placeholder="123.4"
-            ng-keyup="$event.keyCode == 13 ? save() : null"
-            ng-model="input.number" />
-          <!-- <button ng-click="save()" >Save</button> -->
-
-          <div class="alert alert-warning" ng-show="note.nan">Not Saved, wasn't a number - Try Again</div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <line-graph data="input"></line-graph>
-          <div class="row">
-            <button  ng-click="clear()">Clear</button>
-          </div>
         </div>
       </div>
 

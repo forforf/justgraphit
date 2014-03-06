@@ -320,6 +320,9 @@ function MainCtrl($scope, $location, $timeout, $filter, store) {
 
   $scope.checkName = function(){
     $scope.input.graphId = getGraphId($scope.input.name, $scope.graphs.list);
+    var meta = { list: $scope.graphs.list, currentGraph: $scope.input.name };
+
+    saveGraphMeta(meta);
   }
 
   $scope.save = function(){
@@ -346,6 +349,20 @@ function MainCtrl($scope, $location, $timeout, $filter, store) {
     clearGraph();
 
   };
+
+  var showDropTimer;
+  $scope.showDrop = function(){
+    $scope.dropVis={
+      display: 'block',
+      right: 0,
+      left: 'auto'
+    };
+    $timeout.cancel(showDropTimer);
+    showDropTimer = $timeout(function(){
+      $scope.dropVis={display: 'none'}
+      showDropTimer = null;
+    },3500);
+  }
 
 }
 
