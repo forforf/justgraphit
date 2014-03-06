@@ -4,7 +4,7 @@ var myApp = angular.module('myApp',['ngRoute']);
 myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when('/input.html', {
-      templateUrl: '/justgraphit/app/input/input.html',
+      templateUrl: '/app/input/input.html',
       controller: MainCtrl
     })
     .when('/edit/:graphId', {
@@ -17,7 +17,7 @@ myApp.config(function($routeProvider, $locationProvider) {
 //    controller: ChapterCntl
 //  });
 
-  $locationProvider.html5Mode(true);
+  //$locationProvider.html5Mode(true);
 });
 
 //myApp.directive('myDirective', function() {});
