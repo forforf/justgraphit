@@ -20,3 +20,7 @@ text {
 .xLabel {
     font-size: 7pt;
 }
+
+a .glyphicon {
+    padding-left: 0.6em;
+}

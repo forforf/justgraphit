@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp',['ngRoute']);
 
 
-myApp.config(function($routeProvider, $locationProvider) {
+myApp.config(function($routeProvider) {
   $routeProvider
     .when('/input.html', {
       templateUrl: '/app/input/input.html',
@@ -12,18 +12,43 @@ myApp.config(function($routeProvider, $locationProvider) {
       controller: MainCtrl
     })
     .otherwise({redirectTo : '/input.html'});
-//  $routeProvider.when('/Book/:bookId/ch/:chapterId', {
-//    templateUrl: 'chapter.html',
-//    controller: ChapterCntl
-//  });
 
-  //$locationProvider.html5Mode(true);
 });
 
 //myApp.directive('myDirective', function() {});
 //myApp.factory('myService', function() {});
 
-myApp.factory('store', function(){
+myApp.factory('browserStorage', function($window, $location){
+
+  var appId = 'jgi';
+
+  var makeGraphKeyPrefix = function(appId){
+    appId = appId || 'local-storage-prefix';
+    return appId + '-' + $window.btoa($location.host());
+  };
+
+  // binding manually so it's easy to change the API in the future
+  var getItem = $window.localStorage.getItem.bind($window.localStorage);
+  var removeItem = $window.localStorage.removeItem.bind($window.localStorage);
+  var setItem = $window.localStorage.setItem.bind($window.localStorage);
+  return {
+
+    appId: appId,
+
+    // Need to call the native btoa function in the context of window
+    encode: function(s){ return $window.btoa.call($window, s) },
+
+    prefix: makeGraphKeyPrefix(appId),
+
+    getItem: getItem,
+    removeItem: removeItem,
+    setItem: setItem
+
+  };
+});
+
+//Abstracts the actual storage from the app
+myApp.factory('store', function(browserStorage){
 
   var append = function(key, value){
     var updateValue = get(key) || [];
@@ -33,12 +58,16 @@ myApp.factory('store', function(){
   };
 
   var clear = function(key){
-    //ToDo: consider regex to only clear our stuff
-    localStorage.removeItem(key);
+    var re = RegExp(browserStorage.appId);
+    if(key.match(re)){
+      browserStorage.removeItem(key);
+    } else {
+      console.error('JustGraphIt tried to delete a key that had no matching App Id');
+    }
   };
 
   var get = function(key){
-    var str = localStorage.getItem(key);
+    var str = browserStorage.getItem(key);
     return JSON.parse(str);
   };
 
@@ -46,7 +75,7 @@ myApp.factory('store', function(){
     var keys = getAllKeys(prefix);
     var all = {};
     keys.forEach(function(k){
-      var val = localStorage.getItem(k);
+      var val = browserStorage.getItem(k);
       all[k] = val;
     });
     return all;
@@ -55,7 +84,7 @@ myApp.factory('store', function(){
   var getAllKeys = function(prefix){
     var matcher = /^prefix/;
     var keys = []
-    for (var key in localStorage){
+    for (var key in browserStorage){
       if( key.match(matcher) ){
         keys.push(key);
       }
@@ -64,14 +93,13 @@ myApp.factory('store', function(){
   };
 
   var makeGraphKey = function(prefix, graphId){
-    console.log(prefix, graphId);
-    if(!prefix){ console.log('a');return null; }
-    if(!graphId && graphId !== 0){ console.log('b'); return null; }
+    if(!prefix){ return null; }
+    if(!graphId && graphId !== 0){ return null; }
     return ''+prefix+'-graphId-'+graphId;
   };
 
   var save = function(key, value){
-    localStorage.setItem(key, JSON.stringify(value));
+    browserStorage.setItem(key, JSON.stringify(value));
   };
 
   return {
@@ -85,7 +113,7 @@ myApp.factory('store', function(){
   };
 });
 
-myApp.directive('lineGraph', function ($location, store) {
+myApp.directive('lineGraph', function (browserStorage, store) {
   return {
     restrict: 'E',
     template: '<div />',
@@ -95,7 +123,7 @@ myApp.directive('lineGraph', function ($location, store) {
     },
     link: function (scope, elem, attrs) {
 
-      var GRAPH_STORE = $location.host()+'-jgi';
+      var STORAGE_PREFIX = browserStorage.prefix;
 
       function graph(data){
         if(!data && data !== 0 ){
@@ -192,13 +220,12 @@ myApp.directive('lineGraph', function ($location, store) {
       }
 
       function getGraphData(graphId){
-        var graphKey = store.makeGraphKey(GRAPH_STORE, graphId );
+        var graphKey = store.makeGraphKey(STORAGE_PREFIX, graphId );
         return store.get(graphKey);
       }
 
       //graph(data);
       scope.$watchCollection('[data.number, data.datetime, data.graphId]', function(newVal, oldVal){
-        console.log('watched', newVal, scope.data);
         if(newVal){
           graph( getGraphData( scope.data.graphId) );
         }
@@ -207,44 +234,62 @@ myApp.directive('lineGraph', function ($location, store) {
   };
 });
 
-function MainCtrl($scope, $location, $timeout, $filter, store) {
-  var WATCH_INPUT_TEXT_DELAY = 500;
-  var GRAPH_STORE = $location.host()+'-jgi';
+myApp.directive('passFocusTo', function ($timeout) {
+  return {
+    restrict: 'E',
+    scope: {
+      focusTo: '='
+    },
+    link: function (scope, element, attrs) {
+      scope.$watch('focusTo', function(newVal){
+        if(newVal) {
+          $timeout(function(){
+            $('body').find(newVal)[0].focus();
+          });
+        }
+      });
+    }
+  };
+});
+
+function MainCtrl($scope, $timeout, browserStorage, store) {
+
+  //Constants
+  var DROPDOWN_VISIBILITY_TIMER = 3500;
+  var STORAGE_PREFIX = browserStorage.prefix;
   var DEFAULT_GRAPH_NAME = 'my first graph';
+
+  //initialization
   $scope.input = {};
   $scope.note =  {};
   $scope.note.nan = false;
-  //$scope.graphs = [];
-
   $scope.graphs = {};
-
+  $scope.focusTo = null;
 
   //initialize graph meta
   var initMeta = graphMeta();
   $scope.graphs.list = initMeta.list || [];
   $scope.input.name = initMeta.currentGraph || DEFAULT_GRAPH_NAME;
   $scope.input.graphId = getSetGraphId($scope.input.name, $scope.graphs.list);
-  console.log('afterinit', $scope.graphs, $scope.input);
-
-  //
 
 
   // private functions
 
+  function calculateGraphId(name){
+    return browserStorage.encode(name);
+  }
+
   function clearGraph(){
     //call digest to clear graph
     $timeout(function(){
-      console.log('clearing graph');
       $scope.input.graphId = null;
-//      $scope.input.number = null;
-//      $scope.input.datetime = null;
     });
   }
 
   function getGraphId(name, list){
     var idx = list.indexOf(name);
     if (idx>-1) {
-      return idx;
+      return calculateGraphId(name);
     } else {
       return null;
     }
@@ -252,13 +297,11 @@ function MainCtrl($scope, $location, $timeout, $filter, store) {
 
   function getSetGraphId(name, list){
 
-    var idx = getGraphId(name, list);
+    var id = getGraphId(name, list);
 
-    console.log('getset idx', idx);
 
     // return the id if we already have the graph in the list
-    if ( idx !== null ) { console.log('already set, returning', idx); return idx; }
-    console.log('creating id');
+    if ( id !== null ) { return id; }
 
     // otherwise add the name
     list.push(name);
@@ -266,18 +309,36 @@ function MainCtrl($scope, $location, $timeout, $filter, store) {
 
     saveGraphMeta(meta);
 
-    return list.length-1
+    return browserStorage.encode(name);
   }
 
   function graphMeta(){
-    var meta = store.get(GRAPH_STORE);
+    var meta = store.get(STORAGE_PREFIX);
     if(!meta){ meta = {}; }
     if(!meta.list){ meta.list=[] }
     return meta;
   }
 
+  function isEmpty(item){
+    if( typeof item === 'undefined'){ return true }
+    if( item === null ){ return true }
+    if( item.length === 0 ){ return true }
+    return false;
+  }
+
+  function isNotEmpty(item){
+    return !isEmpty(item);
+  }
+
+  function refreshGraph(graphId){
+    $scope.input.graphId = null;
+    $timeout(function(){
+      $scope.input.graphId = graphId;
+    });
+  }
+
   function saveGraphMeta(meta){
-    store.save(GRAPH_STORE, meta)
+    store.save(STORAGE_PREFIX, meta)
   }
 
   // watch function
@@ -285,69 +346,98 @@ function MainCtrl($scope, $location, $timeout, $filter, store) {
   // We're watching the first two elements of the array to detect when the input.name
   // model coalesces to a single match.
   $scope.$watchCollection('[graphs.filterList[0], graphs.filterList[1], graphs.list[0]]', function(newVal, oldVal){
-    if ($scope.input.name === DEFAULT_GRAPH_NAME){
-      //a bit stinky as this breaks if the default graph is not the first graph
-      return false;
+
+    //The name of the graph matches the id (id is used for getting the graph data)
+    if( $scope.input.graphId === calculateGraphId($scope.input.name) ){
+      // this refreshes the graph
+      // might be able to get rid of this refresh if all corner cases where
+      // the graph doesn't show up are taken care of
+      refreshGraph( getGraphId($scope.input.name, $scope.graphs.list) );
+      return false;  //break out fo watch
     }
+
     var currentId = $scope.input.graphId;
 
+    // shouldn't happen
+    if( isEmpty(newVal) ){ return currentId; }
 
-    //initial watch
-    console.log('W -- new old', newVal, oldVal);
-//    if(typeof newVal[0] === 'undefined' && typeof oldVal[0] === 'undefined'){
-//      return currentId;
-//    }
-
-    console.log('W -- watch names', $scope.input.name, newVal[0])
-    if(!newVal){ return currentId; }
-    console.log('filterList', newVal );
-    if( !newVal[0] && !newVal[1] ){
-      console.log('W -- New Name');
+    var nameNotMatchAny = isEmpty(newVal[0]) &&  isEmpty(newVal[1]);
+    if( nameNotMatchAny ){
+      //new graph name is not created until a data point is saved
       clearGraph();
-      return false;
+      return false;  //break out fo watch
     }
-    if( newVal[0] && !newVal[1] ){
-      console.log('W -- one match');
+
+    var justOneMatch = isNotEmpty(newVal[0]) && isEmpty(newVal[1]);
+    if( justOneMatch ){
       $scope.input.graphId = getGraphId(newVal[0], $scope.graphs.list)
     } else {
-      console.log('W -- something else', !!newVal[0].length, !!newVal[1].length);
-      return currentId;
+      return false; //break out fo watch
     }
-    return currentId;
   });
 
   // scope functions
 
-  $scope.checkName = function(){
+  //set the graph to the current name and save as current graph.
+  $scope.setCurrentName = function(){
     $scope.input.graphId = getGraphId($scope.input.name, $scope.graphs.list);
     var meta = { list: $scope.graphs.list, currentGraph: $scope.input.name };
 
     saveGraphMeta(meta);
-  }
+    $scope.focusTo = '#input-number';
+    //reset so next change can retrigger focus
+    $timeout(function(){ $scope.focusTo = null });
+  };
+
+  $scope.removeGraph = function(name){
+    var id = getSetGraphId(name, $scope.graphs.list);
+
+    var key = store.makeGraphKey(STORAGE_PREFIX, id);
+
+    store.clear(key);
+    clearGraph();
+
+    //remove from list (array of names)
+    var idx = $scope.graphs.list.indexOf(name);
+    if (idx > -1) {
+      $scope.graphs.list.splice(idx, 1);
+    }
+
+    // if removing the current graph reset graph to first in the list
+    if (name == $scope.input.name){
+      $scope.input.name = $scope.graphs.list[0];
+      $scope.input.graphId = getGraphId($scope.input.name, $scope.graphs.list);
+    }
+    saveGraphMeta({ list: $scope.graphs.list, currentGraph: $scope.input.name });
+  };
 
   $scope.save = function(){
 
     //validate input
     $scope.note.nan = isNaN( parseFloat($scope.input.number) );
+
     // ignore if we try to graph a non-number
     if ($scope.note.nan){ return !$scope.note.nan; }
 
     var id = getSetGraphId($scope.input.name, $scope.graphs.list);
 
     $scope.input.datetime = moment();
-    var key = store.makeGraphKey(GRAPH_STORE, id);
+    var key = store.makeGraphKey(STORAGE_PREFIX, id);
 
     store.append(key, {number: $scope.input.number, datetime: $scope.input.datetime});
+
+    //clear number
+    $scope.input.number = '';
   };
 
   $scope.clear = function(){
     var id = getSetGraphId($scope.input.name, $scope.graphs.list);
 
-    var key = store.makeGraphKey(GRAPH_STORE, id);
+    var key = store.makeGraphKey(STORAGE_PREFIX, id);
 
     store.clear(key);
     clearGraph();
-
+    refreshGraph(id);
   };
 
   var showDropTimer;
@@ -361,7 +451,7 @@ function MainCtrl($scope, $location, $timeout, $filter, store) {
     showDropTimer = $timeout(function(){
       $scope.dropVis={display: 'none'}
       showDropTimer = null;
-    },3500);
+    },DROPDOWN_VISIBILITY_TIMER);
   }
 
 }

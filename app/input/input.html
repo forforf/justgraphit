@@ -12,18 +12,18 @@
 
 
         <div class="col-md-4">
-          <div class="row">
+          <div id="focus-group" class="row">
             <label for="graph-name">Name It</label>
             <input
               id="graph-name"
               type="text"
-              ng-blur="checkName()"
-              ng-keyup="$event.keyCode == 13 ? checkName() : showDrop()"
+              ng-blur="setCurrentName()"
+              ng-keyup="$event.keyCode == 13 ? setCurrentName() : showDrop()"
               ng-model="input.name">
             <div class="dropdown">
               <ul class="dropdown-menu" ng-style="dropVis">
                 <li ng-repeat="g in (graphs.filterList = (graphs.list | filter:input.name))">
-                  <a ng-click="input.name=g; checkName()">{{ g }}</a>
+                  <a ng-click="input.name=g; setCurrentName()">{{ g }}</a>
                 </li>
 
               </ul>
@@ -32,6 +32,8 @@
           </div>
 
           <div class="row">
+            <div ng-hide="true"><pass-focus-to focus-to="focusTo"></pass-focus-to></div>
+
             <label for="input-number">Number It</label>
             <input
               id="input-number"
@@ -52,11 +54,16 @@
           </div>
         </div>
 
-        <div class="col-md-2 graph-list">
-          {{ graphs.list }},{{input.name }}
-          <ul class="nav nav-pills nav"> My Graphs:
-            <li ng-repeat="g in (graphs.filterList = (graphs.list | filter:input.name))">
+        <div class="col-md-3 graph-list">
+          <ul class="list-group"> My Graphs:
+            <li class="list-group-item" ng-repeat="g in  graphs.list">
               <a ng-click="input.name=g">{{ g }}</a>
+              <a ng-click="removeGraph(g)">
+                <span class="glyphicon glyphicon-remove pull-right"></span>
+              </a>
+              <a ng-click="">
+                <span class="glyphicon glyphicon-pencil pull-right"></span>
+              </a>
             </li>
           </ul>
         </div>
