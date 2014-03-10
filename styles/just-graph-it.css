@@ -24,3 +24,16 @@ text {
 a .glyphicon {
     padding-left: 0.6em;
 }
+
+.list-group-item .edit-number{
+    display: inline;
+}
+
+.list-group-item .edit-number .time{
+    padding-right: 0.8em;
+}
+
+.list-group-item .edit-number input{
+    text-align: center;
+    max-width: 6em;
+}

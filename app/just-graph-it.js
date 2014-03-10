@@ -7,9 +7,9 @@ myApp.config(function($routeProvider) {
       templateUrl: '/app/input/input.html',
       controller: MainCtrl
     })
-    .when('/edit/:graphId', {
-      templateUrl: 'app/edit.html',
-      controller: MainCtrl
+    .when('/edit.html', {
+      templateUrl: 'app/edit/edit.html',
+      controller: EditCtrl
     })
     .otherwise({redirectTo : '/input.html'});
 
@@ -20,6 +20,7 @@ myApp.config(function($routeProvider) {
 
 myApp.factory('browserStorage', function($window, $location){
 
+  //ToDo: App Id belongs in App, not here
   var appId = 'jgi';
 
   var makeGraphKeyPrefix = function(appId){
@@ -45,6 +46,16 @@ myApp.factory('browserStorage', function($window, $location){
     setItem: setItem
 
   };
+});
+
+myApp.factory('graphInfo', function(){
+  var input = {};
+  var graphs = {};
+
+  return {
+    input: input,
+    graphs: graphs
+  }
 });
 
 //Abstracts the actual storage from the app
@@ -102,12 +113,18 @@ myApp.factory('store', function(browserStorage){
     browserStorage.setItem(key, JSON.stringify(value));
   };
 
+  var getStorageId = function(graphId){
+    var prefix = browserStorage.prefix;
+    return makeGraphKey(prefix, graphId);
+  };
+
   return {
     append: append,
     clear: clear,
     get: get,
     getAll: getAll,
     getAllKeys: getAllKeys,
+    getStorageId: getStorageId,
     makeGraphKey: makeGraphKey,
     save: save
   };
@@ -219,6 +236,7 @@ myApp.directive('lineGraph', function (browserStorage, store) {
 
       }
 
+      //ToDo: Refactor to use updated methods for getting Id (no prefix)
       function getGraphData(graphId){
         var graphKey = store.makeGraphKey(STORAGE_PREFIX, graphId );
         return store.get(graphKey);
@@ -252,7 +270,38 @@ myApp.directive('passFocusTo', function ($timeout) {
   };
 });
 
-function MainCtrl($scope, $timeout, browserStorage, store) {
+function EditCtrl($scope, graphInfo, store){
+  $scope.input = graphInfo.input;
+  //browserStorage.encode(name);
+  var storageId = store.getStorageId($scope.input.graphId);
+  console.log('storage Id', storageId);
+  $scope.graphData = store.get(storageId);
+  console.log('graphData', $scope.graphData);
+
+  $scope.ago = function(datetime){
+    return moment(datetime).fromNow();
+  };
+
+  $scope.localTime = function(datetime){
+    return moment(datetime).format('llll');
+  };
+
+
+
+
+  //Not implemented yet
+//  $scope.clear = function(){
+//    var id = getSetGraphId($scope.input.name, $scope.graphs.list);
+//
+//    var key = store.makeGraphKey(STORAGE_PREFIX, id);
+//
+//    store.clear(key);
+//    clearGraph();
+//    refreshGraph(id);
+//  };
+}
+
+function MainCtrl($scope, $timeout, browserStorage, store, graphInfo) {
 
   //Constants
   var DROPDOWN_VISIBILITY_TIMER = 3500;
@@ -260,16 +309,16 @@ function MainCtrl($scope, $timeout, browserStorage, store) {
   var DEFAULT_GRAPH_NAME = 'my first graph';
 
   //initialization
-  $scope.input = {};
+  $scope.input = graphInfo.input;
   $scope.note =  {};
   $scope.note.nan = false;
-  $scope.graphs = {};
+  $scope.graphs = graphInfo.graphs;
   $scope.focusTo = null;
 
   //initialize graph meta
   var initMeta = graphMeta();
-  $scope.graphs.list = initMeta.list || [];
-  $scope.input.name = initMeta.currentGraph || DEFAULT_GRAPH_NAME;
+  $scope.graphs.list = $scope.graphs.list || initMeta.list || [];
+  $scope.input.name = $scope.input.name || initMeta.currentGraph || DEFAULT_GRAPH_NAME;
   $scope.input.graphId = getSetGraphId($scope.input.name, $scope.graphs.list);
 
 
