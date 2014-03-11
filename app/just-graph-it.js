@@ -5,11 +5,15 @@ myApp.config(function($routeProvider) {
   $routeProvider
     .when('/input.html', {
       templateUrl: '/app/input/input.html',
-      controller: MainCtrl
+      controller: InputCtrl
     })
     .when('/edit.html', {
       templateUrl: 'app/edit/edit.html',
       controller: EditCtrl
+    })
+    .when('/about.html', {
+      templateUrl: 'app/about/about.html',
+      controller: AboutCtrl
     })
     .otherwise({redirectTo : '/input.html'});
 
@@ -46,6 +50,14 @@ myApp.factory('browserStorage', function($window, $location){
     setItem: setItem
 
   };
+});
+
+myApp.factory('nav', function(){
+  var pageName = '';
+
+  return {
+    pageName: pageName
+  }
 });
 
 myApp.factory('graphInfo', function(){
@@ -270,38 +282,25 @@ myApp.directive('passFocusTo', function ($timeout) {
   };
 });
 
-function EditCtrl($scope, graphInfo, store){
-  $scope.input = graphInfo.input;
-  //browserStorage.encode(name);
-  var storageId = store.getStorageId($scope.input.graphId);
-  console.log('storage Id', storageId);
-  $scope.graphData = store.get(storageId);
-  console.log('graphData', $scope.graphData);
-
-  $scope.ago = function(datetime){
-    return moment(datetime).fromNow();
-  };
-
-  $scope.localTime = function(datetime){
-    return moment(datetime).format('llll');
-  };
-
-
-
-
-  //Not implemented yet
-//  $scope.clear = function(){
-//    var id = getSetGraphId($scope.input.name, $scope.graphs.list);
-//
-//    var key = store.makeGraphKey(STORAGE_PREFIX, id);
-//
-//    store.clear(key);
-//    clearGraph();
-//    refreshGraph(id);
-//  };
+function MainCtrl($scope, nav){
+  $scope.nav = nav;
 }
 
-function MainCtrl($scope, $timeout, browserStorage, store, graphInfo) {
+function AboutCtrl($scope, nav){
+  $scope.nav = nav;
+  nav.pageName = 'about';
+  var faq = {};
+  faq["Where is my data stored?"] = "The data is stored on the local device, the network never sees it.";
+  faq["Do I need a network connection?"] = "Only to get to the initial page, after that no network is required.";
+  faq["How much is it?"] = "Free.";
+  faq["I don\'t see any ads?"] = "No Ads.";
+
+  $scope.faq = faq;
+}
+
+
+
+function InputCtrl($scope, $timeout, browserStorage, store, graphInfo, nav) {
 
   //Constants
   var DROPDOWN_VISIBILITY_TIMER = 3500;
@@ -314,6 +313,7 @@ function MainCtrl($scope, $timeout, browserStorage, store, graphInfo) {
   $scope.note.nan = false;
   $scope.graphs = graphInfo.graphs;
   $scope.focusTo = null;
+  nav.pageName = 'input';
 
   //initialize graph meta
   var initMeta = graphMeta();
@@ -505,3 +505,37 @@ function MainCtrl($scope, $timeout, browserStorage, store, graphInfo) {
 
 }
 
+function EditCtrl($scope, graphInfo, store, nav){
+  nav.pageName = 'edit';
+
+  $scope.input = graphInfo.input;
+  //browserStorage.encode(name);
+  var storageId = store.getStorageId($scope.input.graphId);
+  console.log('storage Id', storageId);
+  $scope.graphData = store.get(storageId);
+  console.log('graphData', $scope.graphData);
+
+  $scope.ago = function(datetime){
+    return moment(datetime).fromNow();
+  };
+
+  $scope.localTime = function(datetime){
+    return moment(datetime).format('llll');
+  };
+
+  $scope.saveGraphData = function(){
+    store.save(storageId, $scope.graphData);
+  };
+
+  //Not implemented yet
+//  $scope.clear = function(){
+//    var id = getSetGraphId($scope.input.name, $scope.graphs.list);
+//
+//    var key = store.makeGraphKey(STORAGE_PREFIX, id);
+//
+//    store.clear(key);
+//    clearGraph();
+//    refreshGraph(id);
+//  };
+
+}

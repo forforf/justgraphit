@@ -14,17 +14,13 @@
           <a ng-click="">
             <span class="glyphicon glyphicon-remove pull-right"></span>
           </a>
-
-
-
         </li>
       </ul>
     </div>
   </div>
   <div class="row">
     <a ng-click="okToClear=!okToClear">Clear All</a>
-    <button ng-click="">Save Changes</button>
-    <button ng-click="">Export</button>
+    <button ng-click="saveGraphData()">Save Changes</button>
   </div>
   <div class="row">
     <button ng-show="okToClear" ng-click="">Clear</button>
