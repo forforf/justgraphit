@@ -145,7 +145,7 @@ myApp.factory('store', function(browserStorage){
 myApp.directive('lineGraph', function (browserStorage, store) {
   return {
     restrict: 'E',
-    template: '<div />',
+    template: '',
     scope: {
       data: '=',
       graphInput: '='
@@ -153,20 +153,56 @@ myApp.directive('lineGraph', function (browserStorage, store) {
     link: function (scope, elem, attrs) {
 
       var STORAGE_PREFIX = browserStorage.prefix;
+      var GRAPH_FACTOR = 0.1; // % graph should be larger than numbers
+
+      function areClose(num1, num2, factor){
+        if( (num1 < num2*(1+factor) ) && (num1 > num2*(1-factor) ) ){
+          return true;
+        }
+        return false;
+      }
 
       function graph(data){
+        //remove previous
+        elem.find("svg").remove();
+        elem.find("div").remove();
+
+        console.log('data', data);
         if(!data && data !== 0 ){
-          d3.select("svg").remove();
-          return null
+          return null;
         }
 
-
-        data = data || [];
         data.forEach(function(i){i.dt = new Date(i.datetime) });
+
+        if(data.length === 1){
+          console.log('length is 1');
+          d3.select(elem[0])
+            .append("div")
+            .attr("class","graph-one-datapoint")
+            .selectAll("text")
+            .data(data)
+            .enter()
+            .append("div")
+            .text(function(d){ return d.number })
+            .attr("class", "number")
+            .append("div")
+            .text(function(d){ return  moment(d.dt).fromNow()})
+            .attr("class","datetime");
+          return null;
+        }
 
         var num = function(d){ return d.number};
         var minNum = d3.min(data, num);
         var maxNum = d3.max(data, num);
+
+        //reset mins and maxs so all data fits inside graph
+        minNum = minNum - Math.abs(minNum*GRAPH_FACTOR);
+        maxNum = maxNum + Math.abs(maxNum*GRAPH_FACTOR);
+
+
+
+
+
 
         var startDt = data[0].dt;
         var endDt = data[data.length-1].dt;
@@ -190,7 +226,7 @@ myApp.directive('lineGraph', function (browserStorage, store) {
         var xVal = function(d) { return x(d.dt); };
         var yVal = function(d) { return -1 * y(d.number); };
 
-        d3.select("svg").remove();
+
         var vis = d3.select(elem[0])
 
           .append("svg:svg")
