@@ -1,0 +1,12 @@
+---
+ratings:
+  stable: 7
+  useful: 8
+  caliber: 5
+  tidy: 5
+  tended: 8
+  tests: 1
+  unique: 7
+progress:
+  "stable":
+    "released"
