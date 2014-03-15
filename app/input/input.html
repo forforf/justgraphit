@@ -41,7 +41,7 @@
               placeholder="123.4"
               ng-keyup="$event.keyCode == 13 ? save() : null"
               ng-model="input.number" />
-            <!-- <button ng-click="save()" >Save</button> -->
+            <button ng-click="save()" >Save</button>
 
             <div class="alert alert-warning" ng-show="note.nan">Not Saved, wasn't a number - Try Again</div>
           </div>
