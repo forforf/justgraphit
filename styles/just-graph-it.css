@@ -25,6 +25,10 @@ a .glyphicon {
     padding-left: 0.6em;
 }
 
+.btn-graph-clear {
+    margin-top: 1em;
+}
+
 .list-group-item .edit-number{
     display: inline;
 }
