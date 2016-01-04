@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>Editing:</h2> <h4>{{ graphName }}</h4>
+    <div class="row">
+
+        <div class="col-md-3 graph-list">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="#g of graphData">
+                    <span class="edit-number" title="{{ localTime(g.datetime) }}">
+                      <span class="time"> {{ ago(g.datetime) }}</span>
+                      <input type="number" [(ngModel)]="g.number">
+                    </span>
+
+                    <a (click)="removeGraphItem('hmm')">
+                        <span class="glyphicon glyphicon-remove pull-right"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <a (click)="okToClear=!okToClear">Clear All</a>
+        <button (click)="saveGraphData()">Save Changes</button>
+    </div>
+    <div class="row">
+        <button [hidden]="okToClear" (click)="clearGraphData()">Clear</button>
+    </div>
+</div>

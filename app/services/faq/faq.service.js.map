@@ -1,0 +1,1 @@
+{"version":3,"file":"faq.service.js","sourceRoot":"","sources":["faq.service.ts"],"names":["FaqService","FaqService.constructor","FaqService.getFaqs"],"mappings":";;;;;;;;;;;;;;;;;;;;;YAIA;gBAAAA;gBAMAC,CAACA;gBAHGD,4BAAOA,GAAPA;oBACIE,MAAMA,CAACA,SAAGA,CAACA;gBACfA,CAACA;gBALLF;oBAACA,iBAAUA,EAAEA;;+BAMZA;gBAADA,iBAACA;YAADA,CAACA,AAND,IAMC;YAND,mCAMC,CAAA"}
