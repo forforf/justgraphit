@@ -9,6 +9,7 @@ System.register([], function(exports_1) {
             qas[2] = ["How much is it?", "Free."];
             qas[3] = ["I don\'t see any ads?", "No Ads."];
             qas[4] = ["How was this built?", "Originally on Angular1, but it has been rewritten in Angular2"];
+            qas[5] = ["How do I use it?", "Enter a number you want plotted on the graph page. That's it, everything else is optional."];
             exports_1("QAs", QAs = qas);
         }
     }
