@@ -8,6 +8,7 @@ System.register([], function(exports_1) {
             qas[1] = ["Do I need a network connection?", "Only to get to the initial page, after that no network is required."];
             qas[2] = ["How much is it?", "Free."];
             qas[3] = ["I don\'t see any ads?", "No Ads."];
+            qas[4] = ["How was this built?", "Originally on Angular1, but it has been rewritten in Angular2"];
             exports_1("QAs", QAs = qas);
         }
     }
