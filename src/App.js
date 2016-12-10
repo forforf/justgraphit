@@ -1,10 +1,11 @@
+
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import Container from './components/Container';
-import Graphit from './components/Graphit/Graphit';
-import About from './pages/About';
+import Graphit from './pages/Graphit/Graphit';
+import About from './pages/About/About';
 
 class App extends Component {
   render() {
