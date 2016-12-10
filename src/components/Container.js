@@ -1,10 +1,10 @@
 
 import React from 'react';
-import HeaderNav from './HeaderNav';
+import NavBar from './NavBar';
 
 const Container = (props) =>
   <div>
-    <HeaderNav />
+    <NavBar />
     {props.children}
   </div>;
 
