@@ -1,9 +1,9 @@
 
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from '../../node_modules/material-ui/styles/MuiThemeProvider';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-import Container from './app_header/Container';
+import Container from './header/Container';
 import Graphit from './pages/Graphit/Graphit';
 import About from './pages/About/About';
 
