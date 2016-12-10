@@ -3,9 +3,6 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import NavBar from './NavBar';
 
-const AppBarInner = () =>
-  <NavBar />
-
 const Container = (props) =>
   <div>
     <AppBar title="JustGraphIt" showMenuIconButton={false}/>
