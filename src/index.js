@@ -2,15 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import { Router, Route, hashHistory } from 'react-router';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
 
 // Pages
 import About from './pages/About';
 
 ReactDOM.render((
-  <Router history={hashHistory}>
-    <Route path="/" component={App}/>
-    <Route path="/about" component={About}/>
-  </Router>
+    <div>
+      <h1> Index </h1>
+      <App />
+    </div>
+
   ), document.getElementById('root')
 );
