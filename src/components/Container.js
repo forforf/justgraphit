@@ -1,12 +1,11 @@
 
 import React from 'react';
-import Nav from './Nav';
+import HeaderNav from './HeaderNav';
 
-const Container = (props) => <div>
-  <h1> Container </h1>
-  <Nav />
-  {props.children}
-
-</div>;
+const Container = (props) =>
+  <div>
+    <HeaderNav />
+    {props.children}
+  </div>;
 
 export default Container;

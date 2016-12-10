@@ -12,10 +12,6 @@ injectTapEventPlugin();
 import About from './pages/About';
 
 ReactDOM.render((
-    <div>
-      <h1> Index </h1>
-      <App />
-    </div>
-
+    <App />
   ), document.getElementById('root')
 );
