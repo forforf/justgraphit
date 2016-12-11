@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import './Graphit.css';
 import GraphInput from 'components/GraphInput/GraphInput'
+import GraphChart from 'components/GraphData/GraphData'
 
 
 class Graphit extends Component {
@@ -9,6 +10,7 @@ class Graphit extends Component {
     return (
       <div className="App">
         <GraphInput />
+        <GraphChart />
       </div>
     );
   }
