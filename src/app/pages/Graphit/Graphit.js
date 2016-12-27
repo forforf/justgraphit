@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
 import './Graphit.css';
-import GraphInput from 'components/GraphInput/GraphInput'
-import GraphChart from 'components/GraphViewer/GraphViewer.js'
+import GraphInput from 'GraphView/GraphInput.js'
+import GraphChart from 'GraphView/GraphViewer.js'
 
 
 class Graphit extends Component {
