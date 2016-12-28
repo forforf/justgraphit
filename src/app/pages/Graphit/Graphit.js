@@ -16,7 +16,7 @@ class Graphit extends Component {
   render() {
     return (
       <div className="App">
-        <GraphInput />
+        <GraphInput currentGraphObj={this.state.currentGraphObj} persistGraphObj={this.props.persistGraphObj}/>
         <GraphChart currentGraphObj={this.state.currentGraphObj} />
       </div>
     );
