@@ -2,15 +2,22 @@
 import React, { Component } from 'react';
 import './Graphit.css';
 import GraphInput from 'GraphView/GraphInput.js'
-import GraphChart from 'GraphView/GraphViewer.js'
+import GraphChart from 'GraphView/GraphChart.js'
 
 
 class Graphit extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.state.currentGraphObj = props.currentGraphObj;
+  }
+  
   render() {
     return (
       <div className="App">
         <GraphInput />
-        <GraphChart />
+        <GraphChart currentGraphObj={this.state.currentGraphObj} />
       </div>
     );
   }
