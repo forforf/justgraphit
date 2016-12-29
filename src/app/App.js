@@ -25,10 +25,12 @@ class App extends Component {
     }
 
     const currentGraphObj = storage.getLastKeyValue();
+    const allGraphs = storage.getAll();
 
     this.state = {
       storage: storage,
-      currentGraphObj: currentGraphObj
+      currentGraphObj: currentGraphObj,
+      allGraphs: allGraphs
     };
 
     const routeConfig = [
@@ -50,7 +52,7 @@ class App extends Component {
 
   graphItFactory(props, currentGraph) {
     const GraphItWrapper = (props) => {
-     return <Graphit currentGraphObj={this.state.currentGraphObj} persistGraphObj={this.persistGraphObj}/>;
+     return <Graphit currentGraphObj={this.state.currentGraphObj} persistGraphObj={this.persistGraphObj} allGraphs={this.state.allGraphs}/>;
     };
     return GraphItWrapper
   }
