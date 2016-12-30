@@ -12,8 +12,10 @@ class Graphit extends Component {
     super(props);
     this.state = {};
     console.log('Graphit', props);
-    this.state.allGraphs = props.allGraphs;
-    this.state.currentGraphObj = props.currentGraphObj;
+    this.state = {
+      allGraphs: this.props.allGraphs,
+      currentGraphObj: this.props.currentGraphObj
+    }
   }
   
   render() {

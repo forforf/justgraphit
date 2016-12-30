@@ -33,13 +33,6 @@ class App extends Component {
       allGraphs: allGraphs
     };
 
-    const routeConfig = [
-      {
-        path:"/",
-        component: {Container}
-      }
-    ]
-
     this.persistGraphObj = this.persistGraphObj.bind(this);
   }
 
