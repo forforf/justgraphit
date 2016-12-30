@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   persistGraphObj = (name, graphData) => {
-    console.log("App this", this.state.storage);
+    console.log("App called to persisist", name, graphData);
     this.state.storage.save(name, graphData);
     const currentGraphObj = this.state.storage.getLastKeyValue();
     this.setState({currentGraphObj: currentGraphObj});
