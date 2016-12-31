@@ -43,6 +43,17 @@ class Graphit extends Component {
     this.setState({renderToggle: !this.state.renderToggle});
   }
 
+  // We need "this" to bind to this class, not the caller.
+  displayGraph = (graphName) => {
+    console.log("Graphit: displayGraph:", graphName);
+    console.log("props", this.props);
+    let graphData = this.props.storage.load(graphName) || [];
+    console.log("Graphit: graph loaded:", graphName, graphData);
+    const currentGraphObj = { key: graphName, value: graphData };
+    this.setState({currentGraphObj: currentGraphObj});
+    this.setState({renderToggle: !this.state.renderToggle});
+  };
+
   componentDidMount() {
     this.setCurrentGraph();
   }
@@ -57,7 +68,7 @@ class Graphit extends Component {
       <div className="App">
         <GraphInput currentGraphObj={this.state.currentGraphObj} updateGraphNow={this.updateGraphNow}/>
         <GraphChart currentGraphObj={this.state.currentGraphObj} renderToggle={this.state.renderToggle} />
-        <GraphList  allGraphs={this.state.allGraphs} />
+        <GraphList  allGraphs={this.state.allGraphs} displayGraph={this.displayGraph} storage={this.props.storage}/>
       </div>
     );
   }
