@@ -14,12 +14,20 @@ class Graphit extends Component {
     console.log('Graphit', props);
     const currentGraphObj = props.storage.getLastKeyValue();
     const allGraphs = props.storage.getAll();
+    // render toggle is (hopefully) a temporay hack to flag that
+    // the state has indeed changed and a rerender is necessary.
     this.state = {
       allGraphs: allGraphs,
-      currentGraphObj: currentGraphObj
+      currentGraphObj: currentGraphObj,
+      renderToggle: true
     };
 
     this.updateGraphNow = this.updateGraphNow.bind(this);
+  }
+
+  setCurrentGraph() {
+    this.setState({currentGraphObj: this.props.storage.getLastKeyValue()})
+    console.log('Graphit State Set to', this.state );
   }
 
   updateGraphNow(graphName, newValue) {
@@ -28,9 +36,19 @@ class Graphit extends Component {
     console.log("Graphit: graph loaded:", graphName, graph);
     graph.push({number: parseFloat(newValue), datetime: new Date().toISOString()});
     this.props.storage.save(graphName, graph);
-    const currentGraphObj = this.props.storage.load(graphName);
-    console.log("Graphit: graph returned:", graphName, currentGraphObj);
+    const currentGraphData = this.props.storage.load(graphName);
+    console.log("Graphit: graph returned:", graphName, currentGraphData);
+    const currentGraphObj = { key: graphName, value: currentGraphData };
     this.setState({currentGraphObj: currentGraphObj});
+    this.setState({renderToggle: !this.state.renderToggle});
+  }
+
+  componentDidMount() {
+    this.setCurrentGraph();
+  }
+
+  componentWillUnmount() {
+    // anything to do?
   }
 
 
@@ -38,7 +56,7 @@ class Graphit extends Component {
     return (
       <div className="App">
         <GraphInput currentGraphObj={this.state.currentGraphObj} updateGraphNow={this.updateGraphNow}/>
-        <GraphChart currentGraphObj={this.state.currentGraphObj} />
+        <GraphChart currentGraphObj={this.state.currentGraphObj} renderToggle={this.state.renderToggle} />
         <GraphList  allGraphs={this.state.allGraphs} />
       </div>
     );
