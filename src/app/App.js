@@ -33,19 +33,30 @@ class App extends Component {
       allGraphs: allGraphs
     };
 
-    this.persistGraphObj = this.persistGraphObj.bind(this);
+    this.updateGraphNow = this.updateGraphNow.bind(this);
+  }
+  
+  updateGraphNow = (graphName, newValue) => {
+    console.log("App: updateGraph:", graphName, newValue);
+    let graph = this.state.storage.load(graphName) || [];
+    console.log("App: graph loaded:", graphName, graph);
+    graph.push({number: parseFloat(newValue), datetime: new Date().toISOString()});
+    this.state.storage.save(graphName, graph);
+    const currentGraphObj = this.state.storage.load(graphName);
+    console.log("App: graph returned:", graphName, currentGraphObj);
+    this.setState({currentGraphObj: currentGraphObj});
   }
 
-  persistGraphObj = (name, graphData) => {
-    console.log("App called to persisist", name, graphData);
-    this.state.storage.save(name, graphData);
-    const currentGraphObj = this.state.storage.getLastKeyValue();
-    this.setState({currentGraphObj: currentGraphObj});
-  };
+  // persistGraphObj = (name, graphData) => {
+  //   console.log("App called to persisist", name, graphData);
+  //   this.state.storage.save(name, graphData);
+  //   const currentGraphObj = this.state.storage.getLastKeyValue();
+  //   this.setState({currentGraphObj: currentGraphObj});
+  // };
 
   graphItFactory(props, currentGraph) {
     const GraphItWrapper = (props) => {
-     return <Graphit currentGraphObj={this.state.currentGraphObj} persistGraphObj={this.persistGraphObj} allGraphs={this.state.allGraphs}/>;
+     return <Graphit currentGraphObj={this.state.currentGraphObj} updateGraphNow={this.updateGraphNow} allGraphs={this.state.allGraphs}/>;
     };
     return GraphItWrapper
   }
