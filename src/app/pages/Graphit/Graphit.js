@@ -16,20 +16,20 @@ class Graphit extends Component {
     const allGraphs = props.storage.getAll();
     this.state = {
       allGraphs: allGraphs,
-      currentGraphObj: currentGraphObj,
-    }
+      currentGraphObj: currentGraphObj
+    };
 
     this.updateGraphNow = this.updateGraphNow.bind(this);
   }
 
   updateGraphNow(graphName, newValue) {
-    console.log("App: updateGraph:", graphName, newValue);
+    console.log("Graphit: updateGraph:", graphName, newValue);
     let graph = this.props.storage.load(graphName) || [];
-    console.log("App: graph loaded:", graphName, graph);
+    console.log("Graphit: graph loaded:", graphName, graph);
     graph.push({number: parseFloat(newValue), datetime: new Date().toISOString()});
     this.props.storage.save(graphName, graph);
     const currentGraphObj = this.props.storage.load(graphName);
-    console.log("App: graph returned:", graphName, currentGraphObj);
+    console.log("Graphit: graph returned:", graphName, currentGraphObj);
     this.setState({currentGraphObj: currentGraphObj});
   }
 
