@@ -13,63 +13,36 @@ class Graphit extends Component {
     this.state = {};
     console.log('Graphit', props);
     const currentGraphObj = props.storage.getLastKeyValue();
-    const allGraphs = props.storage.getAll();
-    // render toggle is (hopefully) a temporay hack to flag that
-    // the state has indeed changed and a rerender is necessary.
     this.state = {
-      allGraphs: allGraphs,
-      currentGraphObj: currentGraphObj,
-      renderToggle: true
+      currentGraphObj: currentGraphObj
     };
 
     this.updateGraphNow = this.updateGraphNow.bind(this);
   }
 
-  setCurrentGraph() {
-    this.setState({currentGraphObj: this.props.storage.getLastKeyValue()})
-    console.log('Graphit State Set to', this.state );
-  }
-
   updateGraphNow(graphName, newValue) {
     console.log("Graphit: updateGraph:", graphName, newValue);
     let graph = this.props.storage.load(graphName) || [];
-    console.log("Graphit: graph loaded:", graphName, graph);
     graph.push({number: parseFloat(newValue), datetime: new Date().toISOString()});
     this.props.storage.save(graphName, graph);
-    const currentGraphData = this.props.storage.load(graphName);
-    console.log("Graphit: graph returned:", graphName, currentGraphData);
-    const currentGraphObj = { key: graphName, value: currentGraphData };
-    this.setState({currentGraphObj: currentGraphObj});
-    this.setState({renderToggle: !this.state.renderToggle});
+    this.displayGraph(graphName);
   }
 
   // We need "this" to bind to this class, not the caller.
   displayGraph = (graphName) => {
     console.log("Graphit: displayGraph:", graphName);
-    console.log("props", this.props);
     let graphData = this.props.storage.load(graphName) || [];
-    console.log("Graphit: graph loaded:", graphName, graphData);
     const currentGraphObj = { key: graphName, value: graphData };
     this.props.storage.updateHistory(graphName);
     this.setState({currentGraphObj: currentGraphObj});
-    this.setState({renderToggle: !this.state.renderToggle});
   };
-
-  componentDidMount() {
-    this.setCurrentGraph();
-  }
-
-  componentWillUnmount() {
-    // anything to do?
-  }
-
 
   render() {
     return (
       <div className="App">
         <GraphInput currentGraphObj={this.state.currentGraphObj} updateGraphNow={this.updateGraphNow}/>
-        <GraphChart currentGraphObj={this.state.currentGraphObj} renderToggle={this.state.renderToggle} />
-        <GraphList  allGraphs={this.state.allGraphs} displayGraph={this.displayGraph} storage={this.props.storage}/>
+        <GraphChart currentGraphObj={this.state.currentGraphObj} />
+        <GraphList displayGraph={this.displayGraph} storage={this.props.storage}/>
       </div>
     );
   }
