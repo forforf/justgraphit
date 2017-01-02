@@ -50,6 +50,7 @@ class Graphit extends Component {
     let graphData = this.props.storage.load(graphName) || [];
     console.log("Graphit: graph loaded:", graphName, graphData);
     const currentGraphObj = { key: graphName, value: graphData };
+    this.props.storage.updateHistory(graphName);
     this.setState({currentGraphObj: currentGraphObj});
     this.setState({renderToggle: !this.state.renderToggle});
   };

@@ -1,25 +1,17 @@
 
 import React, { Component } from 'react';
+import Edit from 'EditorView/Edit';
 
 class Editor extends Component {
 
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    console.log('EditorView props', this.props);
   }
-
-  handleClick(graphName) {
-  }
-
 
   render() {
     return (
-        <div className="Editor">
-          <h3>Editor</h3>
-          <div>
-            Edit {this.props.storage.getLastKeyValue().key}
-          </div>
-        </div>
+        <Edit storage={this.props.storage}/>
     );
   }
 }
