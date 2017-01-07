@@ -32,7 +32,8 @@ class Graphit extends Component {
   displayGraph = (graphName) => {
     console.log("Graphit: displayGraph:", graphName);
     let graphData = this.props.storage.load(graphName) || [];
-    const currentGraphObj = { key: graphName, value: graphData };
+    // [graphName]: value is equivalent to obj[graphName] = value
+    const currentGraphObj = {[graphName]: graphData };
     this.props.storage.updateHistory(graphName);
     this.setState({currentGraphObj: currentGraphObj});
   };
