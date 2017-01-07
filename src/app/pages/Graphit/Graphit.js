@@ -11,7 +11,6 @@ class Graphit extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    console.log('Graphit', props.storage.getLastKeyValue, props.storage.getLabeledObject);
     const currentGraphObj = props.storage.getLastKeyValue();
     this.state = {
       currentGraphObj: currentGraphObj
@@ -23,7 +22,6 @@ class Graphit extends Component {
   }
 
   updateGraphNow(graphName, newValue) {
-    console.log("Graphit: updateGraph:", graphName, newValue);
     let graph = this.props.storage.load(graphName) || [];
     graph.push({number: parseFloat(newValue), datetime: new Date().toISOString()});
     this.props.storage.save(graphName, graph);
@@ -32,7 +30,6 @@ class Graphit extends Component {
 
   // We need "this" to bind to this class, not the caller.
   displayGraph = (graphName) => {
-    console.log("Graphit: displayGraph:", graphName);
     let graphData = this.props.storage.load(graphName) || [];
     // [graphName]: value is equivalent to obj[graphName] = value
     const currentGraphObj = {[graphName]: graphData };

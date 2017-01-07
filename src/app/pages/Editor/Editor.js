@@ -6,7 +6,6 @@ class Editor extends Component {
 
   constructor(props) {
     super(props);
-    console.log('EditorView props', this.props);
   }
 
   render() {

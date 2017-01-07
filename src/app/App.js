@@ -34,7 +34,6 @@ class App extends Component {
     
 
     const EditorWrapper = (props) => {
-      console.log('EditorWrapper', props);
       return <Editor storage={this.state.storage}/>;
     };
 
