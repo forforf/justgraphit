@@ -11,11 +11,13 @@ class Graphit extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    console.log('Graphit', props);
+    console.log('Graphit', props.storage.getLastKeyValue, props.storage.getLabeledObject);
     const currentGraphObj = props.storage.getLastKeyValue();
     this.state = {
       currentGraphObj: currentGraphObj
     };
+    
+    this.getLabeledObject = props.storage.getLabeledObject;
 
     this.updateGraphNow = this.updateGraphNow.bind(this);
   }
@@ -41,8 +43,8 @@ class Graphit extends Component {
   render() {
     return (
       <div className="App">
-        <GraphInput currentGraphObj={this.state.currentGraphObj} updateGraphNow={this.updateGraphNow}/>
-        <GraphChart currentGraphObj={this.state.currentGraphObj} />
+        <GraphInput currentGraphObj={this.state.currentGraphObj} getLabeledObject={this.getLabeledObject} updateGraphNow={this.updateGraphNow}/>
+        <GraphChart currentGraphObj={this.state.currentGraphObj} getLabeledObject={this.getLabeledObject}/>
         <GraphList displayGraph={this.displayGraph} storage={this.props.storage}/>
       </div>
     );
