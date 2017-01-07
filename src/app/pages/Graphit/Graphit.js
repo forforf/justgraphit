@@ -11,7 +11,7 @@ class Graphit extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    const currentGraphObj = props.storage.getLastKeyValue();
+    const currentGraphObj = props.storage.getLastStorageObject();
     this.state = {
       currentGraphObj: currentGraphObj
     };
