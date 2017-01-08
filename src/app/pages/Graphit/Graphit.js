@@ -39,10 +39,14 @@ class Graphit extends Component {
 
   render() {
     return (
-      <div className="App">
-        <GraphInput currentGraphObj={this.state.currentGraphObj} getLabeledObject={this.getLabeledObject} updateGraphNow={this.updateGraphNow}/>
-        <GraphChart currentGraphObj={this.state.currentGraphObj} getLabeledObject={this.getLabeledObject}/>
-        <GraphList displayGraph={this.displayGraph} storage={this.props.storage}/>
+      <div className="Graphit">
+        <div className="left">
+          <GraphInput currentGraphObj={this.state.currentGraphObj} getLabeledObject={this.getLabeledObject} updateGraphNow={this.updateGraphNow}/>
+          <GraphChart currentGraphObj={this.state.currentGraphObj} getLabeledObject={this.getLabeledObject}/>
+        </div>
+        <div className="right">
+          <GraphList displayGraph={this.displayGraph} storage={this.props.storage}/>
+        </div>
       </div>
     );
   }
