@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import Edit from 'EditorView/Edit';
+import './Editor.css';
 
 class Editor extends Component {
   

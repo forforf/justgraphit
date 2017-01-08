@@ -32,7 +32,6 @@ class App extends Component {
       return <Graphit storage={this.state.storage}/>;
     };
     
-
     const EditorWrapper = (props) => {
       return <Editor storage={this.state.storage}/>;
     };
