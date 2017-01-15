@@ -15,13 +15,8 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    const storage = new Storage();
-
-    // if storage is empty, initialize initial graph
-    if (storage.isEmpty()) {
-      storage.save("my first graph", []);
-    }
-
+    const initialObject = { "my first graph": [] };
+    const storage = new Storage(initialObject);
     this.state = {
       storage: storage
     };
