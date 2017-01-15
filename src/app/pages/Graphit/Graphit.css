@@ -1,25 +1,5 @@
 
 .Graphit {
   text-align: center;
-  position:relative;
-  min-width:50%;
-  max-width:100%;
 }
 
-.left {
-  position:relative;
-  width:50%;
-  float:left;
-}
-
-.right {
-  position:relative;
-  width: 50%;
-  min-width:50%;
-  max-width:100%;
-  float:left;
-}
-
-.GraphChart {
-  margin: 1em;
-}

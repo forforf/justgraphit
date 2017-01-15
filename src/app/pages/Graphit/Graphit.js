@@ -40,12 +40,16 @@ class Graphit extends Component {
   render() {
     return (
       <div className="Graphit">
-        <div className="left">
-          <GraphInput currentGraphObj={this.state.currentGraphObj} getLabeledObject={this.getLabeledObject} updateGraphNow={this.updateGraphNow}/>
-          <GraphChart currentGraphObj={this.state.currentGraphObj} getLabeledObject={this.getLabeledObject}/>
-        </div>
-        <div className="right">
-          <GraphList displayGraph={this.displayGraph} storage={this.props.storage}/>
+        <div className="wrapper">
+          <div className="row">
+            <div className="left col-2-3">
+              <GraphInput currentGraphObj={this.state.currentGraphObj} getLabeledObject={this.getLabeledObject} updateGraphNow={this.updateGraphNow}/>
+              <GraphChart currentGraphObj={this.state.currentGraphObj} getLabeledObject={this.getLabeledObject}/>
+            </div>
+            <div className="right col-1-3">
+              <GraphList displayGraph={this.displayGraph} storage={this.props.storage}/>
+            </div>
+          </div>
         </div>
       </div>
     );
