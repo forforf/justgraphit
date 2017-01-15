@@ -1,6 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Below you will find some information on how to perform common tasks.<br>
+# Justgraphit
+
+This is basically my app for kicking the tires on javascript build systems.
+This is the third iteration. The first was built on Angular 1, the second using Angular 2,
+and now React.js
+
+So far, React fits best with the way I think about HTML UIs.
+
+The App itself is pretty straight forward. 
+
+The main page gives you input fields.
+You name the graph, and provide it numbers. The numbers are plotted on the graph
+based on the time that they were submitted.
+
+The editor page is a very rudimentary graph editor (basically you can delete entries).
+
+And then the about page, and that's basically it.
+
+
+-------
+ This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app)
+
+Which, at least for me, finally gave me back a sane javascript devel9pment environment. It hid all the complexity without getting in my way.
+
+Below you will find some information on how to perform common npm tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Table of Contents
