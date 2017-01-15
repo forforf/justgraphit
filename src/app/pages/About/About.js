@@ -10,7 +10,6 @@ export default React.createClass({
         <h3>JustGraphIt</h3>
         <h4>FAQ</h4>
         <Faq />
-
         <ul>
           <li>
             version: 0.3.0
@@ -21,7 +20,6 @@ export default React.createClass({
           <li>
             license: MIT
           </li>
-
         </ul>
       </div>
     )
