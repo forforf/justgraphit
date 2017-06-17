@@ -1,0 +1,36 @@
+# Spec for AWS CodeBuild
+version: 0.2
+
+env:
+  variables:
+    BUILD_OBJECT: s3://forforf-justgraphit-build/build
+    DEPLOY_OBJECT: s3://justgraphit.com
+    CI: true
+
+phases:
+  install:
+    commands:
+      - 'echo "AWS CODEBUILD: Starting install ..."'
+      - apt-get update -y
+      - npm install
+  pre_build:
+    commands:
+      - 'echo "AWS CODEBUILD: Nothing to do in the pre_build phase..."'
+  build:
+    commands:
+      - 'echo "AWS CODEBUILD: Build started on `date`"'
+      - npm run build
+  post_build:
+    commands:
+      - 'echo "AWS CODEBUILD: Build completed on `date`"'
+      - 'echo "AWS CODEBUILD: syncing to $BUILD_OBJECT-`date +"%Y-%m-%d_%H:%M:%S"` ..."'
+      - aws s3 sync ./build $BUILD_OBJECT-`date +"%Y-%m-%d_%H:%M:%S"`
+      - 'echo "AWS CODEBUILD: running tests CI=$CI (should be true)"'
+      - npm test
+      - 'echo "AWS CODEBUILD: syncing to $DEPLOY_OBJECT"'
+      - aws s3 sync ./build $DEPLOY_OBJECT
+
+artifacts:
+  # files:
+    # - target/messageUtil-1.0.jar
+  discard-paths: yes
