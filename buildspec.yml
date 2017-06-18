@@ -15,7 +15,10 @@ phases:
       - npm install
   pre_build:
     commands:
-      - 'echo "AWS CODEBUILD: Nothing to do in the pre_build phase..."'
+      - 'echo "AWS CODEBUILD: Pre-build rm -rf node_moudles, and reinstall..."'
+      - 'echo "AWS CODEBUILD: ... why does this work??"'
+      - rm -rf node_modules
+      - npm install
   build:
     commands:
       - 'echo "AWS CODEBUILD: Build started on `date`"'
