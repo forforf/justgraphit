@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deep snapshot 1`] = `
+<div
+  className="GraphChart"
+>
+  <div>
+    This is an EmptyGraph
+  </div>
+</div>
+`;
+
+exports[`useEffect 1`] = `
+<div>
+  <div
+    class="GraphChart"
+  >
+    <div>
+      This is an EmptyGraph
+    </div>
+  </div>
+</div>
+`;

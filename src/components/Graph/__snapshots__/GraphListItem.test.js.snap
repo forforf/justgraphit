@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`happy path deep snapshot 1`] = `
+<li
+  className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+  disabled={false}
+  onClick={[Function]}
+>
+  <div
+    className="MuiListItemText-root css-tlelie-MuiListItemText-root"
+  >
+    <span
+      className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+    >
+      graph name
+    </span>
+  </div>
+  <div
+    className="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
+  >
+    <svg
+      aria-hidden={true}
+      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+      data-testid="DeleteIcon"
+      focusable="false"
+      onClick={[Function]}
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+      />
+    </svg>
+  </div>
+</li>
+`;
+
+exports[`happy path shallow snapshot 1`] = `
+<ForwardRef(ListItem)
+  onClick={[Function]}
+>
+  <ForwardRef(ListItemText)
+    primary="graph name"
+  />
+  <ForwardRef(ListItemIcon)>
+    <Memo
+      onClick={[Function]}
+    />
+  </ForwardRef(ListItemIcon)>
+</ForwardRef(ListItem)>
+`;

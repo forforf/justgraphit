@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deep snapshot 1`] = `
+<div
+  style={
+    Object {
+      "borderStyle": "solid",
+      "marginLeft": "5em",
+      "marginTop": "2em",
+      "paddingBottom": "2em",
+      "paddingTop": "2em",
+    }
+  }
+>
+  <div>
+    Not enough to graph yet. Only a single lonely value of:
+  </div>
+  <h3>
+    42
+  </h3>
+  22 years ago
+</div>
+`;

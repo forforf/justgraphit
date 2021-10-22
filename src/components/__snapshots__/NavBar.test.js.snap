@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deep snapshot 1`] = `
+Array [
+  <div
+    className="MuiTabs-root css-1ujnqem-MuiTabs-root"
+  >
+    <div
+      className="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+      onScroll={[Function]}
+      style={
+        Object {
+          "marginBottom": -0,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <div
+        aria-orientation={null}
+        className="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+        onKeyDown={[Function]}
+        role="tablist"
+      >
+        <a
+          aria-selected={true}
+          className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          href="#/"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="tab"
+          tabIndex={0}
+        >
+          GraphIt
+          <span
+            className="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+            style={Object {}}
+          />
+        </a>
+        <a
+          aria-selected={false}
+          className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          href="#/edit"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="tab"
+          tabIndex={-1}
+        >
+          Editor
+        </a>
+        <a
+          aria-selected={false}
+          className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          href="#/about"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="tab"
+          tabIndex={-1}
+        >
+          About
+        </a>
+      </div>
+    </div>
+  </div>,
+  ",",
+]
+`;
+
+exports[`shallow snapshot 1`] = `
+<ForwardRef(Tabs)
+  onChange={[Function]}
+  value={0}
+>
+  <ForwardRef(Tab)
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    label="GraphIt"
+    to="/"
+  />
+  <ForwardRef(Tab)
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    label="Editor"
+    to="/edit"
+  />
+  <ForwardRef(Tab)
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    label="About"
+    to="/about"
+  />
+</ForwardRef(Tabs)>
+`;

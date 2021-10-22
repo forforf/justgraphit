@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deep snapshot 1`] = `
+<ul
+  className="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+>
+  <li
+    className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    disabled={false}
+  >
+    <div
+      className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+    >
+      <span
+        className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+      >
+        Where is my data stored?
+      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+      >
+        The data is stored on the local device, the network never sees it.
+      </p>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    disabled={false}
+  >
+    <div
+      className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+    >
+      <span
+        className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+      >
+        Do I need a network connection?
+      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+      >
+        Only to get to the initial page, after that no network is required.
+      </p>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    disabled={false}
+  >
+    <div
+      className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+    >
+      <span
+        className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+      >
+        How much is it?
+      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+      >
+        Free.
+      </p>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    disabled={false}
+  >
+    <div
+      className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+    >
+      <span
+        className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+      >
+        I don't see any ads?
+      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+      >
+        No Ads.
+      </p>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    disabled={false}
+  >
+    <div
+      className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+    >
+      <span
+        className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+      >
+        How was this built?
+      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+      >
+        Originally on Angular1, then Angular2, then classic React, now functional React
+      </p>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+    disabled={false}
+  >
+    <div
+      className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+    >
+      <span
+        className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+      >
+        How do I use it?
+      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+      >
+        Enter a number you want plotted on the graph page. That's it. To create a new graph, just change the name.
+      </p>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`shallow snapshot 1`] = `
+<ForwardRef(List)>
+  <ForwardRef(ListItem)>
+    <ForwardRef(ListItemText)
+      primary="Where is my data stored?"
+      secondary="The data is stored on the local device, the network never sees it."
+    />
+  </ForwardRef(ListItem)>
+  <ForwardRef(ListItem)>
+    <ForwardRef(ListItemText)
+      primary="Do I need a network connection?"
+      secondary="Only to get to the initial page, after that no network is required."
+    />
+  </ForwardRef(ListItem)>
+  <ForwardRef(ListItem)>
+    <ForwardRef(ListItemText)
+      primary="How much is it?"
+      secondary="Free."
+    />
+  </ForwardRef(ListItem)>
+  <ForwardRef(ListItem)>
+    <ForwardRef(ListItemText)
+      primary="I don't see any ads?"
+      secondary="No Ads."
+    />
+  </ForwardRef(ListItem)>
+  <ForwardRef(ListItem)>
+    <ForwardRef(ListItemText)
+      primary="How was this built?"
+      secondary="Originally on Angular1, then Angular2, then classic React, now functional React"
+    />
+  </ForwardRef(ListItem)>
+  <ForwardRef(ListItem)>
+    <ForwardRef(ListItemText)
+      primary="How do I use it?"
+      secondary="Enter a number you want plotted on the graph page. That's it. To create a new graph, just change the name."
+    />
+  </ForwardRef(ListItem)>
+</ForwardRef(List)>
+`;

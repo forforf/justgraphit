@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deep snapshot x-axis 1`] = `
+<g
+  className="axis"
+  transform="translate(0,0)"
+/>
+`;
+
+exports[`deep snapshot y-axis 1`] = `
+<g
+  className="axis"
+  transform="translate(0,0)"
+/>
+`;

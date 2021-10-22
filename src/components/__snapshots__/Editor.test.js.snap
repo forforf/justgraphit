@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deep snapshot 1`] = `
+<div
+  style={
+    Object {
+      "height": 600,
+      "margin": "auto",
+      "width": "90%",
+    }
+  }
+>
+  <h3>
+    a graph
+  </h3>
+</div>
+`;
+
+exports[`shallow snapshot 1`] = `
+<div
+  style={
+    Object {
+      "height": 600,
+      "margin": "auto",
+      "width": "90%",
+    }
+  }
+>
+  <h3>
+    a graph
+  </h3>
+  <Memo
+    checkboxSelection={true}
+    columns={
+      Array [
+        Object {
+          "align": "center",
+          "editable": true,
+          "field": "datetime",
+          "headerAlign": "center",
+          "headerName": "Datetime Stamp",
+          "width": 220,
+        },
+        Object {
+          "align": "center",
+          "editable": true,
+          "field": "number",
+          "headerAlign": "center",
+          "headerName": "Value",
+          "width": 150,
+        },
+      ]
+    }
+    components={
+      Object {
+        "Toolbar": [Function],
+      }
+    }
+    disableSelectionOnClick={true}
+    getRowId={[Function]}
+    onSelectionModelChange={[Function]}
+    pageSize={20}
+    rows={
+      Array [
+        Object {
+          "datetime": "2000-01-01T04:59:59.000Z",
+          "number": 1,
+        },
+        Object {
+          "datetime": "2000-01-02T05:00:00.000Z",
+          "number": 2,
+        },
+      ]
+    }
+    rowsPerPageOptions={
+      Array [
+        20,
+      ]
+    }
+  />
+</div>
+`;

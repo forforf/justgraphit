@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`empty graph deep snapshot 1`] = `
+<div>
+  This is an EmptyGraph
+</div>
+`;
+
+exports[`line graph deep snapshot 1`] = `
+<svg
+  className="line-graph"
+  height={10}
+  id="jgi-line-graph"
+  width={20}
+>
+  <g
+    className="axis"
+    transform="translate(50,20)"
+  />
+  <g
+    className="axis"
+    transform="translate(50,-10)"
+  />
+  <g
+    transform="translate(50,20)"
+  >
+    <path
+      d="M0,-30L-80,0"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+    />
+  </g>
+</svg>
+`;
+
+exports[`line graph shallow snapshot 1`] = `
+<LineGraph
+  chartId="jgi-line-graph"
+  graphData={
+    Array [
+      Object {
+        "datetime": "2000-01-01T04:59:59.000Z",
+        "number": 1,
+      },
+      Object {
+        "datetime": "2000-01-02T05:00:00.000Z",
+        "number": 2,
+      },
+    ]
+  }
+  graphName="graph name"
+  height={10}
+  width={20}
+/>
+`;
+
+exports[`single item graph deep snapshot 1`] = `
+<div
+  style={
+    Object {
+      "borderStyle": "solid",
+      "marginLeft": "5em",
+      "marginTop": "2em",
+      "paddingBottom": "2em",
+      "paddingTop": "2em",
+    }
+  }
+>
+  <div>
+    Not enough to graph yet. Only a single lonely value of:
+  </div>
+  <h3>
+    1
+  </h3>
+  22 years ago
+</div>
+`;
+
+exports[`single item graph shallow snapshot 1`] = `
+<SingleItemGraph
+  graphName="graph name"
+  itemDatetime="2000-01-01T05:00:00.000Z"
+  itemNumber={1}
+/>
+`;

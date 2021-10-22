@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deep snapshot 1`] = `
+<svg
+  className="line-graph"
+  height={10}
+  id="some-chart-id"
+  width={20}
+>
+  <g
+    className="axis"
+    transform="translate(50,20)"
+  />
+  <g
+    className="axis"
+    transform="translate(50,-10)"
+  />
+  <g
+    transform="translate(50,20)"
+  >
+    <path
+      d="M0,-30L-80,0"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+    />
+  </g>
+</svg>
+`;
+
+exports[`shallow snapshot 1`] = `
+<svg
+  className="line-graph"
+  height={10}
+  id="some-chart-id"
+  width={20}
+>
+  <GraphAxis
+    axis={[Function]}
+    bottom={20}
+    d3select={[Function]}
+    left={50}
+  />
+  <GraphAxis
+    axis={[Function]}
+    bottom={-10}
+    d3select={[Function]}
+    left={50}
+  />
+  <g
+    transform="translate(50,20)"
+  >
+    <path
+      d="M0,-30L-80,0"
+      fill="none"
+      stroke="#000"
+      strokeLinecap="round"
+    />
+  </g>
+</svg>
+`;
