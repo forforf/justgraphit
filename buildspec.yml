@@ -9,14 +9,14 @@ env:
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 14.x
     commands:
-      - 'echo "AWS CODEBUILD: Starting install ..."'
+      - 'echo "AWS CODEBUILD: Starting platform install ..."'
       - apt-get update -y
-      - npm install
   pre_build:
     commands:
-      - 'echo "AWS CODEBUILD: Pre-build rm -rf node_moudles, and reinstall..."'
-      - 'echo "AWS CODEBUILD: ... why does this work??"'
+      - 'echo "AWS CODEBUILD: Pre-build node_modules"'
       - rm -rf node_modules
       - npm install
   build:
