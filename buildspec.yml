@@ -10,9 +10,10 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 14.x
+      nodejs: latest
     commands:
       - 'echo "AWS CODEBUILD: Starting platform install ..."'
+      - node --version
       - apt-get update -y
   pre_build:
     commands:
