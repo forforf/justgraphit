@@ -1,0 +1,279 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deep snapshot 1`] = `
+Array [
+  <header
+    className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-11b3ww9-MuiPaper-root-MuiAppBar-root"
+    title="JustGraphIt"
+  />,
+  <div
+    className="MuiTabs-root css-1ujnqem-MuiTabs-root"
+  >
+    <div
+      className="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+      onScroll={[Function]}
+      style={
+        Object {
+          "marginBottom": -0,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <div
+        aria-orientation={null}
+        className="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+        onKeyDown={[Function]}
+        role="tablist"
+      >
+        <a
+          aria-selected={true}
+          className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          href="#/"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="tab"
+          tabIndex={0}
+        >
+          GraphIt
+          <span
+            className="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+            style={Object {}}
+          />
+        </a>
+        <a
+          aria-selected={false}
+          className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          href="#/edit"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="tab"
+          tabIndex={-1}
+        >
+          Editor
+        </a>
+        <a
+          aria-selected={false}
+          className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+          href="#/about"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="tab"
+          tabIndex={-1}
+        >
+          About
+        </a>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="Graphit"
+  >
+    <div
+      className="wrapper"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="left col-2-3"
+        >
+          <div
+            className="GraphInput"
+          >
+            <div
+              className="GraphInput-name"
+            >
+              <h3>
+                empty graph
+              </h3>
+            </div>
+            <form>
+              <div
+                className="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+                onKeyPress={[Function]}
+              >
+                <div
+                  className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
+                  onClick={[Function]}
+                >
+                  <input
+                    aria-invalid={false}
+                    autoFocus={false}
+                    className="MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+                    disabled={false}
+                    onAnimationStart={[Function]}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    placeholder="Name your graph"
+                    required={false}
+                    type="text"
+                    value="empty graph"
+                  />
+                  <fieldset
+                    aria-hidden={true}
+                    className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      className="css-1a1ihhj"
+                    >
+                      <span
+                        className="notranslate"
+                        dangerouslySetInnerHTML={
+                          Object {
+                            "__html": "&#8203;",
+                          }
+                        }
+                      />
+                    </legend>
+                  </fieldset>
+                </div>
+              </div>
+              <br />
+              <div
+                className="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+                onKeyPress={[Function]}
+              >
+                <div
+                  className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
+                  onClick={[Function]}
+                >
+                  <input
+                    aria-invalid={false}
+                    autoFocus={false}
+                    className="MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+                    disabled={false}
+                    onAnimationStart={[Function]}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    placeholder="Enter number to graph"
+                    required={false}
+                    type="number"
+                    value=""
+                  />
+                  <fieldset
+                    aria-hidden={true}
+                    className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      className="css-1a1ihhj"
+                    >
+                      <span
+                        className="notranslate"
+                        dangerouslySetInnerHTML={
+                          Object {
+                            "__html": "&#8203;",
+                          }
+                        }
+                      />
+                    </legend>
+                  </fieldset>
+                </div>
+              </div>
+              <br />
+              <button
+                className="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root css-sghohy-MuiButtonBase-root-MuiButton-root"
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onContextMenu={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyPress={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                Save
+              </button>
+            </form>
+          </div>
+          <div
+            className="GraphChart"
+          >
+            <div>
+              This is an EmptyGraph
+            </div>
+          </div>
+        </div>
+        <div
+          className="right col-1-3"
+        >
+          <div
+            className="GraphList"
+          >
+            <h3>
+              Graph List
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`shallow snapshot 1`] = `
+<HashRouter>
+  <ForwardRef(AppBar)
+    title="JustGraphIt"
+  />
+  <NavBar />
+  <Route
+    component={[Function]}
+    exact={true}
+    path="/"
+  />
+  <Route
+    component={[Function]}
+    exact={true}
+    path="/about"
+  />
+  <Route
+    component={[Function]}
+    exact={true}
+    path="/edit"
+  />
+</HashRouter>
+`;
