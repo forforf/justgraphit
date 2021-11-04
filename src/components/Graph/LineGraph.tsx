@@ -1,5 +1,9 @@
 import React from 'react';
-import * as d3 from 'd3';
+import { axisBottom, axisLeft } from 'd3-axis';
+import { max as d3max, min as d3min } from 'd3-array';
+import { line as d3Line } from 'd3-shape';
+import { scaleLinear, scaleTime, ScaleTime } from 'd3-scale';
+import { select as d3Select } from 'd3-selection';
 import relative from '../../datetime/relative';
 import GraphAxis from './GraphAxis';
 import { D3Select, DateOrIso, JustGraphitEntry } from '../../JustGraphitTypes';
@@ -31,21 +35,20 @@ function tickTimeSelector(baseTimeTicks: (DateOrIso | undefined)[]) {
 }
 
 // This extracts all the d3 dependencies and allows us to inject a d3 alternative (e.g., a mock)
-function d3Fns(d3g = d3) {
+function d3Fns() {
   return {
     axisMaker: (
       data: JustGraphitEntry[],
-      x: d3.ScaleTime<number, number>,
+      x: ScaleTime<number, number>,
       y: d3.AxisScale<number>
     ) => {
       const bottomTickValues = tickTimeSelector(data.map((o) => o.dt));
 
-      const xAxis = d3g
-        .axisBottom<Date>(x)
+      const xAxis = axisBottom<Date>(x)
         .tickValues(bottomTickValues)
         .tickFormat(relative);
 
-      const yAxis = d3g.axisLeft(y).ticks(5);
+      const yAxis = axisLeft(y).ticks(5);
 
       return {
         x: xAxis,
@@ -57,8 +60,8 @@ function d3Fns(d3g = d3) {
         return d.number;
       };
 
-      const minNum = d3g.min(data, num) ?? 0;
-      const maxNum = d3g.max(data, num) ?? 0;
+      const minNum = d3min(data, num) ?? 0;
+      const maxNum = d3max(data, num) ?? 0;
 
       const startDt = data[0].dt ?? new Date(0);
       const endDt = data[data.length - 1].dt ?? new Date(0);
@@ -66,12 +69,11 @@ function d3Fns(d3g = d3) {
       // The scaleLinear domain and range methods were giving the weak warning
       //     Argument types do not match parameters
       // Which might be an IDE bug as it doesn't show up in CLI
-      const y = d3g
-        .scaleLinear<number, number>()
+      const y = scaleLinear<number, number>()
         .domain([minNum, maxNum])
         .range([size.h, 0]); // reversed since svg 0,0 is top, left
 
-      const x = d3g.scaleTime().domain([startDt, endDt]).range([0, size.w]);
+      const x = scaleTime().domain([startDt, endDt]).range([0, size.w]);
 
       const xVal = (d: JustGraphitEntry): number => x(d.dt ?? new Date(0));
       const yVal = (d: JustGraphitEntry): number => y(d.number);
@@ -80,7 +82,7 @@ function d3Fns(d3g = d3) {
       const mTop = margin.top ?? 0;
       const transform = `translate(${mLeft},${mTop})`;
 
-      const line = d3g.line<JustGraphitEntry>().x(xVal).y(yVal);
+      const line = d3Line<JustGraphitEntry>().x(xVal).y(yVal);
 
       return {
         x: x,
@@ -89,7 +91,7 @@ function d3Fns(d3g = d3) {
         transform: transform,
       };
     },
-    select: d3g.select,
+    select: d3Select,
   };
 }
 
