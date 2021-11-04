@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import Graphit, {GraphitProps} from './Graphit';
-import GraphObject from "../StorageModel/GraphObject";
+import Graphit, { GraphitProps } from './Graphit';
+import GraphObject from '../StorageModel/GraphObject';
 
 let graphitProps: GraphitProps;
 beforeEach(() => {
@@ -11,21 +11,19 @@ beforeEach(() => {
     addNewNumber: jest.fn(),
     changeSelectedGraph: jest.fn(),
     deleteGraph: jest.fn(),
-    graphNameList: []
-  }
-})
+    graphNameList: [],
+  };
+});
 
 test('deep snapshot', () => {
-  const component = renderer.create(
-    <Graphit {...graphitProps}/>,
-  );
+  const component = renderer.create(<Graphit {...graphitProps} />);
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
 
 test('shallow snapshot', () => {
   const renderer = ShallowRenderer.createRenderer();
-  renderer.render(<Graphit {...graphitProps}/>);
+  renderer.render(<Graphit {...graphitProps} />);
   const result = renderer.getRenderOutput();
-  expect(result).toMatchSnapshot()
+  expect(result).toMatchSnapshot();
 });

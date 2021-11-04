@@ -1,20 +1,19 @@
-import React, {useEffect, useRef, useState} from 'react';
-import GraphElement from "./GraphElement";
-import GraphObject from "../../StorageModel/GraphObject";
+import React, { useEffect, useRef, useState } from 'react';
+import GraphElement from './GraphElement';
+import GraphObject from '../../StorageModel/GraphObject';
 
-
-const GRAPH_DEFAULTS: {height: number, width: number} = {
+const GRAPH_DEFAULTS: { height: number; width: number } = {
   height: 200,
-  width: 300
+  width: 300,
 };
 
 export type GraphChartProps = {
   graphObject: GraphObject;
-}
+};
 
-function GraphChart({graphObject}: GraphChartProps): JSX.Element {
+function GraphChart({ graphObject }: GraphChartProps): JSX.Element {
   const [height, setHeight] = useState<number>(GRAPH_DEFAULTS.height);
-  const [width, setWidth] = useState<number>(GRAPH_DEFAULTS.width)
+  const [width, setWidth] = useState<number>(GRAPH_DEFAULTS.width);
   const graphRef = useRef<HTMLDivElement>(null);
 
   // Only triggered on render.
@@ -25,18 +24,22 @@ function GraphChart({graphObject}: GraphChartProps): JSX.Element {
     const current = graphRef?.current;
     const h = current?.clientHeight;
     const w = current?.clientWidth;
-    if (h != null && w != null) { /* `!= null` checks for null and undefined */
+    if (h != null && w != null) {
+      /* `!= null` checks for null and undefined */
       setHeight(h);
       setWidth(w);
     }
   }, []);
 
-
   return (
     <div className="GraphChart" ref={graphRef}>
-      <GraphElement graphData={graphObject.data} height={height} width={width} />
+      <GraphElement
+        graphData={graphObject.data}
+        height={height}
+        width={width}
+      />
     </div>
-  )
+  );
 }
 
-export default GraphChart
+export default GraphChart;

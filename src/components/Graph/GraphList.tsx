@@ -1,13 +1,18 @@
 import React from 'react';
-import GraphListItem from "./GraphListItem";
-import {GraphHandler, GraphName} from "../../JustGraphitTypes";
+import GraphListItem from './GraphListItem';
+import { GraphHandler, GraphName } from '../../JustGraphitTypes';
 
 export type GraphListProps = {
   graphNameList: GraphName[];
   changeSelectedGraph: GraphHandler;
   deleteGraph: GraphHandler;
-}
-function GraphList({graphNameList, changeSelectedGraph, deleteGraph}: GraphListProps): JSX.Element {
+};
+
+function GraphList({
+  graphNameList,
+  changeSelectedGraph,
+  deleteGraph,
+}: GraphListProps): JSX.Element {
   const graphNames = graphNameList ?? [];
   const graphList = graphNames.map((graphName, index) => (
     <GraphListItem

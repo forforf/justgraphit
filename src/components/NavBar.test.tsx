@@ -1,9 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ShallowRenderer from 'react-test-renderer/shallow'
-import {HashRouter} from 'react-router-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
+import { HashRouter } from 'react-router-dom';
 import NavBar from './NavBar';
-
 
 test('deep snapshot', () => {
   const component = renderer.create(
@@ -19,7 +18,5 @@ test('shallow snapshot', () => {
   const renderer = ShallowRenderer.createRenderer();
   renderer.render(<NavBar />);
   const result = renderer.getRenderOutput();
-  expect(result).toMatchSnapshot()
+  expect(result).toMatchSnapshot();
 });
-
-

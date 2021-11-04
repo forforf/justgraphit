@@ -135,7 +135,7 @@ exports[`deep snapshot 1`] = `
       0.4.0
     </li>
     <li>
-      author email: 
+      author email:
       <a
         href="mailto: dmarti21@gmail.com"
       >
@@ -167,7 +167,7 @@ exports[`shallow snapshot 1`] = `
       0.4.0
     </li>
     <li>
-      author email: 
+      author email:
       <a
         href="mailto: dmarti21@gmail.com"
       >

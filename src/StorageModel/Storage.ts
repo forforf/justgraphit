@@ -1,6 +1,9 @@
 import IsEmpty from 'lodash.isempty';
-import {GraphName, JustGraphitEntry, JustGraphitStore} from "../JustGraphitTypes";
-
+import {
+  GraphName,
+  JustGraphitEntry,
+  JustGraphitStore,
+} from '../JustGraphitTypes';
 
 // ToDo Needs testing:
 // It's just an thin abstraction layer above a persistent store (local storage in this case)
@@ -8,18 +11,18 @@ import {GraphName, JustGraphitEntry, JustGraphitStore} from "../JustGraphitTypes
 class LocalStorageWrapper {
   mainKey: string;
 
-  constructor(mainKey='__justgraphit__') {
+  constructor(mainKey = '__justgraphit__') {
     this.mainKey = mainKey;
   }
 
   load = () => {
-    return JSON.parse(localStorage.getItem(this.mainKey) ?? '{}')
+    return JSON.parse(localStorage.getItem(this.mainKey) ?? '{}');
   };
 
   // We are saving an entire JSON object using mainKey
   // The saved JSON object should have keys of it's own to be
   // meaningful in this context.
-  save = (value: unknown) =>  {
+  save = (value: unknown) => {
     localStorage.setItem(this.mainKey, JSON.stringify(value));
   };
 }
@@ -29,7 +32,9 @@ class Storage {
   store: JustGraphitStore;
 
   constructor(initialObj: JustGraphitStore) {
-    const initialObject:JustGraphitStore = IsEmpty(initialObj) ? {} : initialObj;
+    const initialObject: JustGraphitStore = IsEmpty(initialObj)
+      ? {}
+      : initialObj;
     this.persistentStore = new LocalStorageWrapper();
     this.store = this.persistentStore.load();
     if (this.isEmpty()) {
@@ -38,15 +43,15 @@ class Storage {
     }
   }
 
-  deleteObject = (key:string): boolean=> {
-    const deleteRetVal = (delete this.store[key] ?? '');
+  deleteObject = (key: string): boolean => {
+    const deleteRetVal = delete this.store[key] ?? '';
     if (deleteRetVal) {
       this.updatePersistence();
     }
     return deleteRetVal;
-  }
-  
-  getAll= (): JustGraphitStore => this.store;
+  };
+
+  getAll = (): JustGraphitStore => this.store;
 
   getAllKeys = (): GraphName[] => Object.keys(this.getAll());
 
@@ -54,13 +59,13 @@ class Storage {
 
   getInitialObject = (): Record<GraphName, JustGraphitEntry[]> => {
     return { [this.getInitialKey()]: this.store[this.getInitialKey()] };
-  }
+  };
 
   isEmpty = (): boolean => IsEmpty(this.store);
 
-  load = (key:string): JustGraphitEntry[] =>  this.store[key];
+  load = (key: string): JustGraphitEntry[] => this.store[key];
 
-  save = (key:GraphName, val:JustGraphitEntry[]): GraphName => {
+  save = (key: GraphName, val: JustGraphitEntry[]): GraphName => {
     this.store[key] = val;
     this.updatePersistence();
     return key;
@@ -68,7 +73,7 @@ class Storage {
 
   updatePersistence = (): void => {
     this.persistentStore.save(this.store);
-  }
+  };
 }
 
 export default Storage;
