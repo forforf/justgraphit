@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import GraphObject from '../StorageModel/GraphObject';
 import { AppBar } from '@mui/material';
 import NavBar from './NavBar';
@@ -18,17 +18,7 @@ export type AppRouterProps = {
   storage: Storage;
 };
 
-function makePropless<T>(Component: React.ComponentType, componentProps: T) {
-  function Propless(routerProps: unknown) {
-    return <Component {...componentProps} {...routerProps} />;
-  }
-
-  Propless.displayName = `Propless(${Component.displayName || Component.name})`;
-  return Propless;
-}
-
 function AppRouter({ storage }: AppRouterProps): JSX.Element {
-  // const lastObject = storage.getLastStorageObject();
   const initialObject = storage.getInitialObject();
 
   // state
@@ -40,7 +30,6 @@ function AppRouter({ storage }: AppRouterProps): JSX.Element {
   // CRUD-like handlers
   const changeSelectedGraph: GraphHandler = (graphName) => {
     const newGraphData = storage.load(graphName);
-    // storage.updateHistory(graphName)
     const newGraphObject = new GraphObject(graphName, newGraphData);
     setGraphObject(newGraphObject);
   };
@@ -67,7 +56,6 @@ function AppRouter({ storage }: AppRouterProps): JSX.Element {
   const deleteGraph: GraphHandler = (graphName) => {
     if (window.confirm('Delete Graph?')) {
       storage.deleteObject(graphName);
-      // Load last saved graph
       const lastName = storage.getInitialKey();
       const lastData = storage.load(lastName);
       const newGraphObject = new GraphObject(lastName, lastData);
@@ -77,7 +65,7 @@ function AppRouter({ storage }: AppRouterProps): JSX.Element {
   };
 
   // props
-  const graphItProps = {
+  const graphItProps: GraphitProps = {
     graphObject,
     addNewNumber,
     changeSelectedGraph,
@@ -85,7 +73,7 @@ function AppRouter({ storage }: AppRouterProps): JSX.Element {
     graphNameList,
   };
 
-  const editorProps = {
+  const editorProps: EditorProps = {
     graphObject,
     setGraphObject,
     saveToStorage: storage.save,
@@ -95,21 +83,11 @@ function AppRouter({ storage }: AppRouterProps): JSX.Element {
     <HashRouter>
       <AppBar title="JustGraphIt" />
       <NavBar />
-      <Route
-        exact
-        path="/"
-        component={makePropless<GraphitProps>(Graphit as React.ComponentType, {
-          ...graphItProps,
-        })}
-      />
-      <Route exact path="/about" component={About} />
-      <Route
-        exact
-        path="/edit"
-        component={makePropless<EditorProps>(Editor as React.ComponentType, {
-          ...editorProps,
-        })}
-      />
+      <Routes>
+        <Route path="/" element={<Graphit {...graphItProps} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/edit" element={<Editor {...editorProps} />} />
+      </Routes>
     </HashRouter>
   );
 }

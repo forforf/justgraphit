@@ -260,20 +260,42 @@ exports[`shallow snapshot 1`] = `
     title="JustGraphIt"
   />
   <NavBar />
-  <Route
-    component={[Function]}
-    exact={true}
-    path="/"
-  />
-  <Route
-    component={[Function]}
-    exact={true}
-    path="/about"
-  />
-  <Route
-    component={[Function]}
-    exact={true}
-    path="/edit"
-  />
+  <Routes>
+    <Route
+      element={
+        <Graphit
+          addNewNumber={[Function]}
+          changeSelectedGraph={[Function]}
+          deleteGraph={[Function]}
+          graphObject={
+            GraphObject {
+              "data": Array [],
+              "name": "empty graph",
+            }
+          }
+        />
+      }
+      path="/"
+    />
+    <Route
+      element={<About />}
+      path="/about"
+    />
+    <Route
+      element={
+        <Editor
+          graphObject={
+            GraphObject {
+              "data": Array [],
+              "name": "empty graph",
+            }
+          }
+          saveToStorage={[MockFunction]}
+          setGraphObject={[Function]}
+        />
+      }
+      path="/edit"
+    />
+  </Routes>
 </HashRouter>
 `;

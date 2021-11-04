@@ -107,13 +107,6 @@ exports[`shallow snapshot 1`] = `
     component={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "propTypes": Object {
-          "innerRef": [Function],
-          "onClick": [Function],
-          "replace": [Function],
-          "target": [Function],
-          "to": [Function],
-        },
         "render": [Function],
       }
     }
@@ -124,13 +117,6 @@ exports[`shallow snapshot 1`] = `
     component={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "propTypes": Object {
-          "innerRef": [Function],
-          "onClick": [Function],
-          "replace": [Function],
-          "target": [Function],
-          "to": [Function],
-        },
         "render": [Function],
       }
     }
@@ -141,13 +127,6 @@ exports[`shallow snapshot 1`] = `
     component={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "propTypes": Object {
-          "innerRef": [Function],
-          "onClick": [Function],
-          "replace": [Function],
-          "target": [Function],
-          "to": [Function],
-        },
         "render": [Function],
       }
     }
