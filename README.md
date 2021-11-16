@@ -18,6 +18,18 @@ The editor page is a very rudimentary graph editor (basically you can delete ent
 
 And then the about page, and that's basically it.
 
+## Github Workflow Testing
+
+### Local
+
+* Install [act](https://github.com/nektos/act), if not already installed
+* On the command line, run `act` which runs the default workflow: `on: push`.
+* Follow along as the workflow runs.
+
+Note: `act` is not guaranteed to be identical to the github workflows, so use it as a general guide, not gospel.
+
+Worflows are found in `github/workflows`
+
 ## Opinions and Philosophies
 
 

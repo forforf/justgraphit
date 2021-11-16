@@ -9,25 +9,4 @@ updates:
   - forforf
   assignees:
   - forforf
-  ignore:
-  - dependency-name: "@testing-library/user-event"
-    versions:
-    - 12.7.0
-    - 12.7.2
-    - 12.7.3
-    - 12.8.0
-    - 12.8.1
-    - 12.8.3
-    - 13.0.0
-    - 13.0.1
-    - 13.0.10
-    - 13.0.13
-    - 13.0.16
-    - 13.0.2
-    - 13.0.6
-    - 13.0.7
-    - 13.1.5
-  - dependency-name: three
-    versions:
-    - 0.125.1
-    - 0.126.0      
+
