@@ -40,11 +40,11 @@ exports[`line graph shallow snapshot 1`] = `
   graphData={
     Array [
       Object {
-        "datetime": "2000-01-01T04:59:59.000Z",
+        "datetime": "1999-12-31T23:59:59.000Z",
         "number": 1,
       },
       Object {
-        "datetime": "2000-01-02T05:00:00.000Z",
+        "datetime": "2000-01-02T00:00:00.000Z",
         "number": 2,
       },
     ]
@@ -78,7 +78,7 @@ exports[`single item graph deep snapshot 1`] = `
 
 exports[`single item graph shallow snapshot 1`] = `
 <SingleItemGraph
-  itemDatetime="2000-01-01T05:00:00.000Z"
+  itemDatetime="2000-01-01T00:00:00.000Z"
   itemNumber={1}
 />
 `;

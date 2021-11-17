@@ -1,6 +1,12 @@
 {
   "name": "justgraphit-react",
   "version": "0.5.0",
+  "author": {
+    "name": "forforf",
+    "email": "dmarti21@gmail.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/forforf",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.6.0",
@@ -33,7 +39,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!d3-axis)/\"",
+    "test": "jest",
+    "cra-test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!d3-axis)/\"",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -49,12 +56,14 @@
     ]
   },
   "devDependencies": {
+    "@emotion/jest": "^11.6.0",
     "@types/d3": "^7.1.0",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^26.0.0",
     "@types/react-router-dom": "^5.3.2",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
-    "prettier": "2.4.1"
+    "prettier": "2.4.1",
+    "ts-jest": "^26.0.0"
   }
 }

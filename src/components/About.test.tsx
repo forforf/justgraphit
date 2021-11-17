@@ -3,15 +3,17 @@ import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import About from './About';
 
-const OLD_ENV = process.env;
+jest.mock('./About/about-fetcher', () => ({
+  getProjectData: jest.fn(() => ({
+    NAME: 'Mock Name',
+    VERSION: '0.0.0',
+    AUTHOR_EMAIL: 'mock@example.com',
+    LICENSE: 'Mock License',
+  })),
+}));
 
-beforeEach(() => {
-  jest.resetModules(); // Most important - it clears the cache
-  process.env = { ...OLD_ENV }; // Make a copy
-});
-
-afterAll(() => {
-  process.env = OLD_ENV; // Restore old environment
+afterEach(() => {
+  jest.clearAllMocks();
 });
 
 test('deep snapshot', () => {
