@@ -11,13 +11,13 @@ beforeEach(() => {
     {
       number: 1,
       datetime: new Date(
-        '1999-12-31T23:59:59'
+        '1999-12-31T23:59:59.00Z'
       ).toISOString() as ISODatetimeType,
     },
     {
       number: 2,
       datetime: new Date(
-        '2000-01-02T00:00:00'
+        '2000-01-02T00:00:00.000Z'
       ).toISOString() as ISODatetimeType,
     },
   ];

@@ -40,7 +40,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "cra-test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!d3-axis)/\"",
+    "test-ci": "jest --runInBand",
+    "test-cra": "react-scripts test --transformIgnorePatterns \"node_modules/(?!d3-axis)/\"",
     "eject": "react-scripts eject"
   },
   "browserslist": {
