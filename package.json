@@ -6,7 +6,7 @@
     "email": "dmarti21@gmail.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/forforf",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.6.0",
