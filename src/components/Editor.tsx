@@ -54,7 +54,8 @@ export type EditorProps = {
   setGraphObject: (g: GraphObject) => void;
   saveToStorage: (gn: GraphName, r: JustGraphitEntry[]) => void;
 };
-// TODO: Should `setGraphObject`  save to storage?, or should it be done here? Leaning toward here
+// TODO: Should `setGraphObject` save to storage internally?,
+//  or should saving to storage be done here? Leaning toward here
 //   Reason: Confirmations and potential transformations, might make rolling back easier in the future.
 //   Counter: Why should this component know what a graphObject is?
 function Editor({
