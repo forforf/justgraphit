@@ -30,7 +30,7 @@ phases:
       - 'echo "AWS CODEBUILD: syncing to $BUILD_OBJECT-`date +"%Y-%m-%d_%H:%M:%S"` ..."'
       - aws s3 sync ./build $BUILD_OBJECT-`date +"%Y-%m-%d_%H:%M:%S"`
       - 'echo "AWS CODEBUILD: running tests CI=$CI (should be true)"'
-      - npm test
+      - npm run test-ci
       - 'echo "AWS CODEBUILD: syncing to $DEPLOY_OBJECT"'
       - aws s3 sync ./build $DEPLOY_OBJECT
 
