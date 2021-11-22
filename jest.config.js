@@ -3,6 +3,11 @@
 // so now this file is picked up, but it bypasss CRA.
 module.exports = {
   preset: 'ts-jest',
+  globals: {
+    'ts-jest': {
+      isolatedModules: true,
+    },
+  },
   testEnvironment: 'jsdom',
   transform: {
     '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
