@@ -1,6 +1,11 @@
 
 # Justgraphit
 
+
+
+[![Node.js CI](https://github.com/forforf/justgraphit/actions/workflows/node.js.yml/badge.svg)](https://github.com/forforf/justgraphit/actions/workflows/node.js.yml)
+
+
 This is basically my app for kicking the tires on javascript build systems.
 This is the fourth iteration. The first was built on Angular 1, the second using Angular 2,
 third was classical React circa early 2017, the fourth was functional React with hooks 
