@@ -58,7 +58,7 @@
   "devDependencies": {
     "@emotion/jest": "^11.8.0",
     "@types/d3": "^7.1.0",
-    "@types/jest": "^27.4.0",
+    "@types/jest": "^27.4.1",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
