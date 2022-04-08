@@ -20,7 +20,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/lodash.isempty": "^4.4.6",
     "@types/node": "^17.0.22",
-    "@types/react": "^17.0.41",
+    "@types/react": "^18.0.0",
     "@types/react-dom": "^17.0.14",
     "@types/yaireo__relative-time": "^1.0.0",
     "@yaireo/relative-time": "^1.0.1",
