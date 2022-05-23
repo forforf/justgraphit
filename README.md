@@ -45,8 +45,16 @@ is often easier to test and modify.
 
 ## Typescript?
 
-Actually I hope to convert over to TypeScript after the functional switch over is complete.
+~~Actually I hope to convert over to TypeScript after the functional switch over is complete.~~
+Converted to typescript
 
+### Deploying
+
+Note: Until I get the automated process up and running again, here's the manual way.
+1. `git push aws`, requires the IAM git https credentials
+2. Go to AWS/CodeBuild/justgraphit. Click on "Start Build"
+
+The automated way would to run the build automatically when the repo is updated. I just need to setup the triggers to do that.
 
 ### Testing
 
