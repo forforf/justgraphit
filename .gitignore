@@ -24,3 +24,5 @@ yarn-error.log*
 
 .eslintcache
 /src/react-app-env.d.ts
+
+/tmp
