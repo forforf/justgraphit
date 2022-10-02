@@ -19,7 +19,7 @@ exports[`deep snapshot 1`] = `
 exports[`shallow snapshot 1`] = `
 <div
   style={
-    Object {
+    {
       "height": 600,
       "margin": "auto",
       "width": "90%",
@@ -32,8 +32,8 @@ exports[`shallow snapshot 1`] = `
   <Memo
     checkboxSelection={true}
     columns={
-      Array [
-        Object {
+      [
+        {
           "align": "center",
           "editable": true,
           "field": "datetime",
@@ -41,7 +41,7 @@ exports[`shallow snapshot 1`] = `
           "headerName": "Datetime Stamp",
           "width": 220,
         },
-        Object {
+        {
           "align": "center",
           "editable": true,
           "field": "number",
@@ -52,7 +52,7 @@ exports[`shallow snapshot 1`] = `
       ]
     }
     components={
-      Object {
+      {
         "Toolbar": [Function],
       }
     }
@@ -61,19 +61,19 @@ exports[`shallow snapshot 1`] = `
     onSelectionModelChange={[Function]}
     pageSize={20}
     rows={
-      Array [
-        Object {
+      [
+        {
           "datetime": "1999-12-31T23:59:59.000Z",
           "number": 1,
         },
-        Object {
+        {
           "datetime": "2000-01-02T00:00:00.000Z",
           "number": 2,
         },
       ]
     }
     rowsPerPageOptions={
-      Array [
+      [
         20,
       ]
     }

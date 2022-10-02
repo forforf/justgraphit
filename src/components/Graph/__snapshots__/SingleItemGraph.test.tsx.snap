@@ -3,7 +3,7 @@
 exports[`deep snapshot 1`] = `
 <div
   style={
-    Object {
+    {
       "borderStyle": "solid",
       "marginLeft": "5em",
       "marginTop": "2em",

@@ -63,6 +63,8 @@
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "eslint-plugin-jest": "^27.x",
+    "jest": "29.x",
+    "jest-environment-jsdom": "^29.x",
     "prettier": "2.x",
     "ts-jest": "^29.0.3"
   }

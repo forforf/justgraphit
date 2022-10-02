@@ -38,12 +38,12 @@ exports[`line graph shallow snapshot 1`] = `
 <LineGraph
   chartId="jgi-line-graph"
   graphData={
-    Array [
-      Object {
+    [
+      {
         "datetime": "1999-12-31T23:59:59.000Z",
         "number": 1,
       },
-      Object {
+      {
         "datetime": "2000-01-02T00:00:00.000Z",
         "number": 2,
       },
@@ -57,7 +57,7 @@ exports[`line graph shallow snapshot 1`] = `
 exports[`single item graph deep snapshot 1`] = `
 <div
   style={
-    Object {
+    {
       "borderStyle": "solid",
       "marginLeft": "5em",
       "marginTop": "2em",

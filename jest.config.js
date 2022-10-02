@@ -6,11 +6,11 @@ module.exports = {
   globals: {
     'ts-jest': {
       isolatedModules: true,
-    },
+    }, // this is deprecated and moves to transform, but tests fail to run when removed
   },
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
+    '^.+\\.(ts|tsx|js|jsx)$': ['ts-jest', { isolatedModules: true }],
   },
   transformIgnorePatterns: [
     // `node_modules/d3-axis`,

@@ -1,6 +1,86 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`deep snapshot 1`] = `
+.emotion-0 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.emotion-1.Mui-focusVisible {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.emotion-1.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.emotion-1.Mui-selected.Mui-focusVisible {
+  background-color: rgba(25, 118, 210, 0.2);
+}
+
+.emotion-1.Mui-disabled {
+  opacity: 0.38;
+}
+
+.emotion-2 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.emotion-3 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  display: block;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: rgba(0, 0, 0, 0.6);
+  display: block;
+}
+
 <div
   className="About"
 >
@@ -11,117 +91,117 @@ exports[`deep snapshot 1`] = `
     FAQ
   </h4>
   <ul
-    className="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+    className="MuiList-root MuiList-padding emotion-0"
   >
     <li
-      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-1"
       disabled={false}
     >
       <div
-        className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+        className="MuiListItemText-root MuiListItemText-multiline emotion-2"
       >
         <span
-          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary emotion-3"
         >
           Where is my data stored?
         </span>
         <p
-          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary emotion-4"
         >
           The data is stored on the local device, the network never sees it.
         </p>
       </div>
     </li>
     <li
-      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-1"
       disabled={false}
     >
       <div
-        className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+        className="MuiListItemText-root MuiListItemText-multiline emotion-2"
       >
         <span
-          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary emotion-3"
         >
           Do I need a network connection?
         </span>
         <p
-          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary emotion-4"
         >
           Only to get to the initial page, after that no network is required.
         </p>
       </div>
     </li>
     <li
-      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-1"
       disabled={false}
     >
       <div
-        className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+        className="MuiListItemText-root MuiListItemText-multiline emotion-2"
       >
         <span
-          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary emotion-3"
         >
           How much is it?
         </span>
         <p
-          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary emotion-4"
         >
           Free.
         </p>
       </div>
     </li>
     <li
-      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-1"
       disabled={false}
     >
       <div
-        className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+        className="MuiListItemText-root MuiListItemText-multiline emotion-2"
       >
         <span
-          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary emotion-3"
         >
           I don't see any ads?
         </span>
         <p
-          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary emotion-4"
         >
           No Ads.
         </p>
       </div>
     </li>
     <li
-      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-1"
       disabled={false}
     >
       <div
-        className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+        className="MuiListItemText-root MuiListItemText-multiline emotion-2"
       >
         <span
-          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary emotion-3"
         >
           How was this built?
         </span>
         <p
-          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary emotion-4"
         >
           Originally on Angular1, then Angular2, then classic React, now functional React
         </p>
       </div>
     </li>
     <li
-      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+      className="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-1"
       disabled={false}
     >
       <div
-        className="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
+        className="MuiListItemText-root MuiListItemText-multiline emotion-2"
       >
         <span
-          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body1 MuiListItemText-primary emotion-3"
         >
           How do I use it?
         </span>
         <p
-          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary css-83ijpv-MuiTypography-root"
+          className="MuiTypography-root MuiTypography-body2 MuiListItemText-secondary emotion-4"
         >
           Enter a number you want plotted on the graph page. That's it. To create a new graph, just change the name.
         </p>
