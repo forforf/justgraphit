@@ -27,7 +27,6 @@ test('useEffect', () => {
   const root = createRoot(mount!);
   act(() => {
     root.render(<GraphChart {...graphChartProps} />)
-    // ReactDom.render(<GraphChart {...graphChartProps} />, mount);
   });
   expect(mount).toMatchSnapshot();
 });
