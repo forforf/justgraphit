@@ -31,7 +31,7 @@
     "typescript": "^4.6.2",
     "web-vitals": "^3.x"
   },
-  "overrides": {
+  "resolutions": {
     "nth-check": "2.0.1"
   },
   "scripts": {
