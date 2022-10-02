@@ -114,7 +114,7 @@ function Editor({
     // TODO: Figure out where to style (theme, css, but probably not here)
     <div style={{ height: 600, width: '90%', margin: 'auto' }}>
       <h3>{graphObject.name}</h3>
-      <DataGrid
+      <DataGrid experimentalFeatures={{ newEditingApi: true }}
         rows={rows}
         getRowId={(r) => r.datetime}
         columns={columns}
