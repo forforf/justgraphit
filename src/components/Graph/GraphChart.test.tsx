@@ -1,9 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ReactDom from 'react-dom';
+import { createRoot } from 'react-dom/client'
 import { act } from 'react-dom/test-utils';
 import GraphChart, { GraphChartProps } from './GraphChart';
 import GraphObject from '../../StorageModel/GraphObject'; // let mockD3select: () => jest.Mock<unknown, any>;
+
+// @ts-ignore
+globalThis.IS_REACT_ACT_ENVIRONMENT = true
 
 let graphChartProps: GraphChartProps;
 beforeEach(() => {
@@ -20,9 +23,11 @@ test('deep snapshot', () => {
 });
 
 test('useEffect', () => {
-  const mount = document.createElement('div');
+  const mount = document.createElement('div')
+  const root = createRoot(mount!);
   act(() => {
-    ReactDom.render(<GraphChart {...graphChartProps} />, mount);
+    root.render(<GraphChart {...graphChartProps} />)
+    // ReactDom.render(<GraphChart {...graphChartProps} />, mount);
   });
   expect(mount).toMatchSnapshot();
 });
