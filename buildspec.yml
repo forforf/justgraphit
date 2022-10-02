@@ -15,11 +15,12 @@ phases:
       - 'echo "AWS CODEBUILD: Starting platform install ..."'
       - node --version
       - apt-get update -y
+      - npm install -g yarn
+      - yarn -v
   pre_build:
     commands:
       - 'echo "AWS CODEBUILD: Pre-build node_modules"'
-      - rm -rf node_modules
-      - npm install
+      - yarn install --frozen-lockfile
   build:
     commands:
       - 'echo "AWS CODEBUILD: Build started on `date`"'
