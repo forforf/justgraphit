@@ -20,7 +20,7 @@ phases:
   pre_build:
     commands:
       - 'echo "AWS CODEBUILD: Pre-build node_modules"'
-      - yarn install --frozen-lockfile
+      - yarn install
   build:
     commands:
       - 'echo "AWS CODEBUILD: Build started on `date`"'
