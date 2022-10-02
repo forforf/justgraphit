@@ -10,6 +10,7 @@ import {
   DataGrid,
   GridAlignment,
   GridColDef,
+  GridRowModel,
   GridSelectionModel,
   GridToolbar,
 } from '@mui/x-data-grid';
@@ -95,6 +96,29 @@ function Editor({
     }
   };
 
+  const processRowUpdate = React.useCallback(
+      (newRow: GridRowModel) => {
+        console.log('nr', newRow)
+        // TODO: Dry with deleteHandler and see if it can be simplified
+        const newGraphRows = rows.map( r => {
+          if (r.datetime == newRow.datetime) {
+            const {number, datetime, dt} = newRow
+            return {number, datetime, dt}
+          }
+          return r
+        })
+        const newGraphObject = new GraphObject(graphObject.name, newGraphRows);
+        setGraphObject(newGraphObject);
+        saveToStorage(graphObject.name, newGraphRows);
+        return newRow
+      },
+      [],
+  );
+
+  const handleProcessRowUpdateError = React.useCallback((error: Error) => {
+    console.error(error);
+  }, []);
+
   type WithDeleteProps = {
     deleteHandler: () => void;
   };
@@ -123,6 +147,8 @@ function Editor({
         checkboxSelection
         disableSelectionOnClick
         onSelectionModelChange={setSelectionModel}
+        processRowUpdate={processRowUpdate}
+        onProcessRowUpdateError={handleProcessRowUpdateError}
         components={{
           Toolbar: ToolBarWrapper,
         }}
