@@ -12,9 +12,7 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx|js|jsx)$': ['ts-jest', { isolatedModules: true }],
   },
-  transformIgnorePatterns: [
-    // `node_modules/d3-axis`,
-  ],
+  transformIgnorePatterns: [],
   snapshotSerializers: [
     '@emotion/jest/serializer' /* if needed other snapshotSerializers should go here */,
   ],
