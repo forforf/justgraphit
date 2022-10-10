@@ -57,9 +57,16 @@ exports[`shallow snapshot 1`] = `
       }
     }
     disableSelectionOnClick={true}
+    experimentalFeatures={
+      {
+        "newEditingApi": true,
+      }
+    }
     getRowId={[Function]}
+    onProcessRowUpdateError={[Function]}
     onSelectionModelChange={[Function]}
     pageSize={20}
+    processRowUpdate={[Function]}
     rows={
       [
         {
