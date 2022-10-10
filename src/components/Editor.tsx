@@ -112,7 +112,7 @@ function Editor({
         saveToStorage(graphObject.name, newGraphRows);
         return newRow
       },
-      [],
+      [graphObject.name, rows, saveToStorage, setGraphObject],
   );
 
   const handleProcessRowUpdateError = React.useCallback((error: Error) => {
