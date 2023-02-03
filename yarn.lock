@@ -1920,9 +1920,9 @@
     react-is "^18.2.0"
 
 "@mui/x-data-grid@^5.x":
-  version "5.17.7"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.17.7.tgz#e338eb715e2bab77f7a191c9f2d212dbe08ae946"
-  integrity sha512-AwvmXcpqPCJAgakYa7BL+PZcFAwD2ulY9UJf1Bo2G0bDim8rJ5M46ewO0C70oOn5NiZwO/90/bo9/sbb5wwtKQ==
+  version "5.17.22"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.17.22.tgz#db0eae1448631c3fb0168d05bf7111a6a3f5e1d2"
+  integrity sha512-75nc+BL5G8/KzMOBl7NQ622D9n6mLx3tsRnF0HmccGYLMrZ7jlBMz50M9thrDee7b27CsrZolay7tq+cPFrq4Q==
   dependencies:
     "@babel/runtime" "^7.18.9"
     "@mui/utils" "^5.10.3"
