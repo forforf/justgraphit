@@ -64,7 +64,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/react-test-renderer": "^18.x",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
-    "@typescript-eslint/parser": "^5.40.0",
+    "@typescript-eslint/parser": "^5.54.0",
     "eslint-plugin-jest": "^27.x",
     "jest": "29.x",
     "jest-environment-jsdom": "^29.x",
