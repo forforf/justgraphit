@@ -13,7 +13,7 @@
     "@emotion/styled": "^11.x",
     "@mui/icons-material": "^5.x",
     "@mui/material": "^5.x",
-    "@mui/x-data-grid": "^5.x",
+    "@mui/x-data-grid": "^6.x",
     "@types/lodash.isempty": "^4.4.6",
     "@types/node": "^18.x",
     "@types/react": "^18.x",
